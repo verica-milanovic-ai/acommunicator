@@ -4,6 +4,10 @@ body{
     font-family:$primary-font;
     background-color: white;
     color:$primary-color-darker;
+    width:100%;
+    .container{
+        width: 75%;
+    }
 }
 
 .primary-navbar{

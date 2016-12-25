@@ -2,7 +2,10 @@
 body {
   font-family: "Coming Soon", cursive;
   background-color: white;
-  color: #124364; }
+  color: #124364;
+  width: 100%; }
+  body .container {
+    width: 75%; }
 
 .primary-navbar {
   background-color: #b6daf2; }
