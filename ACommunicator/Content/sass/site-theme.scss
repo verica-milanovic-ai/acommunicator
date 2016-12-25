@@ -1,0 +1,14 @@
+﻿@import 'site-theme-variables.scss';
+
+body{
+    font-family:$primary-font;
+    background-color: white;
+    color:$primary-color-darker;
+}
+
+.primary-navbar{
+    background-color: $primary-color-lighter;
+    .title{
+        color: $primary-color-darker;
+    }
+}
