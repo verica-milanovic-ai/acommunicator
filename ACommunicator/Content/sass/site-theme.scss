@@ -1,18 +1,68 @@
 ﻿@import 'site-theme-variables.scss';
 
-body{
-    font-family:$primary-font;
+body {
+    font-family: $primary-font;
     background-color: white;
-    color:$primary-color-darker;
-    width:100%;
-    .container{
+    color: $primary-color-darker;
+    width: 100%;
+
+    .container {
         width: 75%;
+    }
+
+    .container.body-content {
+        position: relative;
+        top: $logo-height;
     }
 }
 
-.primary-navbar{
+/*
+    Navbar
+*/
+
+.primary-navbar {
+    min-height: $logo-height;
     background-color: $primary-color-lighter;
-    .title{
+    border-color: $primary-color-lighter;
+
+    .title {
         color: $primary-color-darker;
+    }
+
+    .navbar-header.navbar-bottom {
+        position: relative;
+        top: $logo-height/2;
+    }
+
+    .navbar-header {
+        img {
+            max-height: $logo-height;
+        }
+    }
+}
+
+/*
+    Carousel
+*/
+
+.carousel {
+    margin: auto;
+    min-height: 300px;
+    height: 300px;
+    max-height: 300px;
+}
+
+.carousel-content {
+    height: 400px;
+    width: 100%;
+}
+
+.carousel-inner {
+    img {
+        margin: auto;
+        width: auto;
+        height: 300px;
+        max-height: 300px;
+        min-height: 300px;
     }
 }
