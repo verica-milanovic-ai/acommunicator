@@ -103,6 +103,11 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\imgs\img1.png" />
+    <Content Include="Content\imgs\img2.png" />
+    <Content Include="Content\imgs\img3.png" />
+    <Content Include="Content\imgs\img4.png" />
+    <Content Include="Content\imgs\img5.png" />
     <Content Include="Content\imgs\logo.png" />
     <Content Include="Content\site-theme.css" />
     <Content Include="Content\site-theme.min.css">
