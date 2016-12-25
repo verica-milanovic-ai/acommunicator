@@ -1,5 +1,7 @@
 USE master ;  
-GO  
+IF EXISTS (SELECT name FROM master.dbo.sysdatabases WHERE name = N'ACommunicator')
+DROP DATABASE [ACommunicator]
+GO
 CREATE DATABASE ACommunicator  
 ON   
 ( NAME = ACommunicator_dat,  
@@ -26,7 +28,7 @@ CREATE TABLE [dbo].[AUsers]
  [Password] [nchar](50) NOT NULL,
  [Email] [nchar](50) NOT NULL,
  [Telephone] [nchar](50) NULL,
- [PicturePath] [nchar](50) NULL
+ [PicturePath] [nchar](255) NULL
 ) ON [PRIMARY]
 GO
 
@@ -38,7 +40,7 @@ CREATE TABLE [dbo].[EndUsers]
  [Id] int NOT NULL PRIMARY KEY,
  [Name] [nchar](50) NOT NULL,
  [Username] [nchar](50) NOT NULL,
- [PicturePath] [nchar](50) NULL
+ [PicturePath] [nchar](255) NULL
 ) ON [PRIMARY]
 GO
 
@@ -50,8 +52,8 @@ CREATE TABLE [dbo].[Options]
  [Id] int NOT NULL PRIMARY KEY,
  [Title] [nchar](20) NOT NULL,
  [Description] [nchar](255) NULL,
- [PicturePath] [nchar](50) NOT NULL,
- [SoundPath] [nchar](50) NOT NULL
+ [PicturePath] [nchar](255) NOT NULL,
+ [SoundPath] [nchar](255) NOT NULL
 ) ON [PRIMARY]
 GO
 
@@ -60,14 +62,14 @@ GO
 
 CREATE TABLE [dbo].[AUserEndUser]
 (   
- [AdminId] int NOT NULL,
+ [AUserId] int NOT NULL,
  [EndUserId] int NOT NULL,
  CONSTRAINT PK_AUserEndUser PRIMARY KEY
     (
-        AdminId,
+        AUserId,
         EndUserId
     ),
- FOREIGN KEY (AdminId) REFERENCES AUsers (Id),
+ FOREIGN KEY (AUserId) REFERENCES AUsers (Id),
  FOREIGN KEY (EndUserId) REFERENCES EndUsers (Id)
 ) ON [PRIMARY]
 GO

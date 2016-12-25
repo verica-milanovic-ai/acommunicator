@@ -7,10 +7,10 @@
       <Schema Namespace="ACommunicatorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AUserEndUser">
           <Key>
-            <PropertyRef Name="AdminId" />
+            <PropertyRef Name="AUserId" />
             <PropertyRef Name="EndUserId" />
           </Key>
-          <Property Name="AdminId" Type="int" Nullable="false" />
+          <Property Name="AUserId" Type="int" Nullable="false" />
           <Property Name="EndUserId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="AUsers">
@@ -23,7 +23,7 @@
           <Property Name="Password" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="Telephone" Type="nchar" MaxLength="50" />
-          <Property Name="PicturePath" Type="nchar" MaxLength="50" />
+          <Property Name="PicturePath" Type="nchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="EndUserOption">
           <Key>
@@ -40,7 +40,7 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="Username" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="PicturePath" Type="nchar" MaxLength="50" />
+          <Property Name="PicturePath" Type="nchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Options">
           <Key>
@@ -49,10 +49,10 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Title" Type="nchar" MaxLength="20" Nullable="false" />
           <Property Name="Description" Type="nchar" MaxLength="255" />
-          <Property Name="PicturePath" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="SoundPath" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="PicturePath" Type="nchar" MaxLength="255" Nullable="false" />
+          <Property Name="SoundPath" Type="nchar" MaxLength="255" Nullable="false" />
         </EntityType>
-        <Association Name="FK__AUserEndU__Admin__164452B1">
+        <Association Name="FK__AUserEndU__AUser__164452B1">
           <End Role="AUsers" Type="Self.AUsers" Multiplicity="1" />
           <End Role="AUserEndUser" Type="Self.AUserEndUser" Multiplicity="*" />
           <ReferentialConstraint>
@@ -60,7 +60,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="AUserEndUser">
-              <PropertyRef Name="AdminId" />
+              <PropertyRef Name="AUserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -106,7 +106,7 @@
           <EntitySet Name="EndUserOption" EntityType="Self.EndUserOption" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EndUsers" EntityType="Self.EndUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Options" EntityType="Self.Options" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__AUserEndU__Admin__164452B1" Association="Self.FK__AUserEndU__Admin__164452B1">
+          <AssociationSet Name="FK__AUserEndU__AUser__164452B1" Association="Self.FK__AUserEndU__AUser__164452B1">
             <End Role="AUsers" EntitySet="AUsers" />
             <End Role="AUserEndUser" EntitySet="AUserEndUser" />
           </AssociationSet>
@@ -138,7 +138,7 @@
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="PicturePath" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="PicturePath" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="EndUsers" Relationship="Self.AUserEndUser" FromRole="AUsers" ToRole="EndUsers" />
         </EntityType>
         <EntityType Name="EndUser">
@@ -148,7 +148,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="PicturePath" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="PicturePath" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="AUsers" Relationship="Self.AUserEndUser" FromRole="EndUsers" ToRole="AUsers" />
           <NavigationProperty Name="Options" Relationship="Self.EndUserOption" FromRole="EndUsers" ToRole="Options" />
         </EntityType>
@@ -159,8 +159,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
-          <Property Name="PicturePath" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="SoundPath" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="PicturePath" Type="String" MaxLength="255" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="SoundPath" Type="String" MaxLength="255" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="EndUsers" Relationship="Self.EndUserOption" FromRole="Options" ToRole="EndUsers" />
         </EntityType>
         <Association Name="AUserEndUser">
@@ -226,7 +226,7 @@
           </EntitySetMapping>
           <AssociationSetMapping Name="AUserEndUser" TypeName="ACommunicatorModel.AUserEndUser" StoreEntitySet="AUserEndUser">
             <EndProperty Name="AUsers">
-              <ScalarProperty Name="Id" ColumnName="AdminId" />
+              <ScalarProperty Name="Id" ColumnName="AUserId" />
             </EndProperty>
             <EndProperty Name="EndUsers">
               <ScalarProperty Name="Id" ColumnName="EndUserId" />
