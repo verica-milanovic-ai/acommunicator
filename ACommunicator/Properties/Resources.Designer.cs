@@ -70,6 +70,33 @@ namespace ACommunicator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Potvrda lozinke.
+        /// </summary>
+        public static string ConfirmPassword {
+            get {
+                return ResourceManager.GetString("ConfirmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email adresa.
+        /// </summary>
+        public static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to marko.markovic@gmail.com.
+        /// </summary>
+        public static string EmailExample {
+            get {
+                return ResourceManager.GetString("EmailExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Prijavi se.
         /// </summary>
         public static string LogIn {
@@ -84,6 +111,87 @@ namespace ACommunicator.Properties {
         public static string MetaCommunicator {
             get {
                 return ResourceManager.GetString("MetaCommunicator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lozinka.
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;Lozinka-123&apos;.
+        /// </summary>
+        public static string PasswordExample {
+            get {
+                return ResourceManager.GetString("PasswordExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registruj se.
+        /// </summary>
+        public static string Register {
+            get {
+                return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Potvrda lozinke je obavezna..
+        /// </summary>
+        public static string RequiredConfirmPassword {
+            get {
+                return ResourceManager.GetString("RequiredConfirmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email adresa je obavezna..
+        /// </summary>
+        public static string RequiredEmail {
+            get {
+                return ResourceManager.GetString("RequiredEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lozinka je obavezna..
+        /// </summary>
+        public static string RequiredPassword {
+            get {
+                return ResourceManager.GetString("RequiredPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Koisničko ime je obavezno..
+        /// </summary>
+        public static string RequiredUsername {
+            get {
+                return ResourceManager.GetString("RequiredUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Korisničko ime.
+        /// </summary>
+        public static string Username {
+            get {
+                return ResourceManager.GetString("Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;marko_markovic&apos;.
+        /// </summary>
+        public static string UsernameExample {
+            get {
+                return ResourceManager.GetString("UsernameExample", resourceCulture);
             }
         }
     }

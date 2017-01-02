@@ -126,4 +126,40 @@
   <data name="MetaCommunicator" xml:space="preserve">
     <value>MetaKomunikator</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Lozinka</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Registruj se</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Korisničko ime</value>
+  </data>
+  <data name="RequiredUsername" xml:space="preserve">
+    <value>Koisničko ime je obavezno.</value>
+  </data>
+  <data name="RequiredPassword" xml:space="preserve">
+    <value>Lozinka je obavezna.</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Potvrda lozinke</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email adresa</value>
+  </data>
+  <data name="EmailExample" xml:space="preserve">
+    <value>marko.markovic@gmail.com</value>
+  </data>
+  <data name="PasswordExample" xml:space="preserve">
+    <value>'Lozinka-123'</value>
+  </data>
+  <data name="RequiredConfirmPassword" xml:space="preserve">
+    <value>Potvrda lozinke je obavezna.</value>
+  </data>
+  <data name="RequiredEmail" xml:space="preserve">
+    <value>Email adresa je obavezna.</value>
+  </data>
+  <data name="UsernameExample" xml:space="preserve">
+    <value>'marko_markovic'</value>
+  </data>
 </root>
