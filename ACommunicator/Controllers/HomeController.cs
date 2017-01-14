@@ -10,28 +10,5 @@ namespace ACommunicator.Controllers
         {
             return View();
         }
-        [HttpGet]
-        public ActionResult Login()
-        {
-            return View(new LoginViewModel());
-        }
-
-        [HttpPost]
-        public ActionResult Login(LoginViewModel loginViewModel)
-        {
-            return View("Index");
-        }
-
-        [HttpGet]
-        public ActionResult Register()
-        {
-            return View(new RegisterViewModel());
-        }
-
-        [HttpPost]
-        public ActionResult Register(RegisterViewModel registerViewModel)
-        {
-            return View("Index");
-        }
     }
 }
