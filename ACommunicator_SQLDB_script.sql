@@ -22,8 +22,8 @@ GO
 
 CREATE TABLE [dbo].[AUsers]
 (   
- [Id] int NOT NULL PRIMARY KEY,
- [Name] [nchar](50) NOT NULL,
+ [Id] int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+ [Name] [nchar](50) NULL,
  [Username] [nchar](50) NOT NULL,
  [Password] [nchar](50) NOT NULL,
  [Email] [nchar](50) NOT NULL,
@@ -37,7 +37,7 @@ GO
 
 CREATE TABLE [dbo].[EndUsers]
 (   
- [Id] int NOT NULL PRIMARY KEY,
+ [Id] int NOT NULL IDENTITY(1,1) PRIMARY KEY,
  [Name] [nchar](50) NOT NULL,
  [Username] [nchar](50) NOT NULL,
  [PicturePath] [nchar](255) NULL
@@ -49,7 +49,7 @@ GO
 
 CREATE TABLE [dbo].[Options]
 (   
- [Id] int NOT NULL PRIMARY KEY,
+ [Id] int NOT NULL IDENTITY(1,1) PRIMARY KEY,
  [Title] [nchar](20) NOT NULL,
  [Description] [nchar](255) NULL,
  [PicturePath] [nchar](255) NOT NULL,
