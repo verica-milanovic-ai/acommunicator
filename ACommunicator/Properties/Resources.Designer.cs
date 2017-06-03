@@ -115,6 +115,15 @@ namespace ACommunicator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ne postoji korisnik sa unetim korisničkim imenom..
+        /// </summary>
+        public static string NoUserWithSpecifiedUsername {
+            get {
+                return ResourceManager.GetString("NoUserWithSpecifiedUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Lozinka.
         /// </summary>
         public static string Password {
@@ -178,6 +187,15 @@ namespace ACommunicator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to acommunicator17@gmail.com.
+        /// </summary>
+        public static string SenderEmailAddress {
+            get {
+                return ResourceManager.GetString("SenderEmailAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Korisničko ime.
         /// </summary>
         public static string Username {
@@ -192,6 +210,38 @@ namespace ACommunicator.Properties {
         public static string UsernameExample {
             get {
                 return ResourceManager.GetString("UsernameExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Poštovani,
+        ///
+        ///Hvala Vam što ste se registrovali!
+        ///
+        ///Srdačno,
+        ///Vaš AKomunikator.
+        /// </summary>
+        public static string WelcomeMailBody {
+            get {
+                return ResourceManager.GetString("WelcomeMailBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dobrodošli!.
+        /// </summary>
+        public static string WelcomeMailSubject {
+            get {
+                return ResourceManager.GetString("WelcomeMailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uneta lozinka je pogrešna..
+        /// </summary>
+        public static string WrongPassword {
+            get {
+                return ResourceManager.GetString("WrongPassword", resourceCulture);
             }
         }
     }

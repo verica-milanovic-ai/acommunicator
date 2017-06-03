@@ -45,8 +45,12 @@ body {
   max-height: 300px;
   min-height: 300px; }
 
+/*
+    Login and Register Form
+*/
 .login-form .btn-login,
-.login-form .btn-register {
+.login-form .btn-register, .register-form .btn-login,
+.register-form .btn-register {
   background-color: #3498DB;
   outline: none;
   color: #fff;
@@ -60,24 +64,27 @@ body {
 .login-form .btn-login:hover,
 .login-form .btn-login:focus,
 .login-form .btn-register:hover,
-.login-form .btn-register:focus {
+.login-form .btn-register:focus, .register-form .btn-login:hover,
+.register-form .btn-login:focus,
+.register-form .btn-register:hover,
+.register-form .btn-register:focus {
   color: #fff;
   background-color: #124364;
   border-color: #3498DB; }
 
-.login-form .panel-login {
+.login-form .panel-login, .register-form .panel-login {
   border-color: #b6daf2;
   -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2); }
 
-.login-form .panel-login > .panel-heading {
+.login-form .panel-login > .panel-heading, .register-form .panel-login > .panel-heading {
   color: #124364;
   background-color: #fff;
   border-color: #fff;
   text-align: center; }
 
-.login-form .panel-login > .panel-heading a {
+.login-form .panel-login > .panel-heading a, .register-form .panel-login > .panel-heading a {
   text-decoration: none;
   color: gray;
   font-weight: bold;
@@ -86,11 +93,11 @@ body {
   -moz-transition: all 0.1s linear;
   transition: all 0.1s linear; }
 
-.login-form .panel-login > .panel-heading a.active {
+.login-form .panel-login > .panel-heading a.active, .register-form .panel-login > .panel-heading a.active {
   color: #3498DB;
   font-size: 18px; }
 
-.login-form .panel-login > .panel-heading hr {
+.login-form .panel-login > .panel-heading hr, .register-form .panel-login > .panel-heading hr {
   margin-top: 10px;
   margin-bottom: 0px;
   clear: both;
@@ -101,7 +108,7 @@ body {
   background-image: -ms-linear-gradient(left, transparent, rgba(0, 0, 0, 0.15), transparent);
   background-image: -o-linear-gradient(left, transparent, rgba(0, 0, 0, 0.15), transparent); }
 
-.login-form .panel-login input[type="text"], .login-form .panel-login input[type="email"], .login-form .panel-login input[type="password"] {
+.login-form .panel-login input[type="text"], .login-form .panel-login input[type="email"], .login-form .panel-login input[type="password"], .register-form .panel-login input[type="text"], .register-form .panel-login input[type="email"], .register-form .panel-login input[type="password"] {
   height: 45px;
   border: 1px solid #b6daf2;
   font-size: 16px;
@@ -110,10 +117,20 @@ body {
   transition: all 0.1s linear; }
 
 .login-form .panel-login input:hover,
-.login-form .panel-login input:focus {
+.login-form .panel-login input:focus, .register-form .panel-login input:hover,
+.register-form .panel-login input:focus {
   outline: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
   border-color: #b6daf2; }
+
+/*
+    Validation Messages
+*/
+.field-validation-error {
+  color: #bf1b1b; }
+
+.input-validation-error {
+  border-color: #ee8585; }
 

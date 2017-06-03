@@ -162,4 +162,24 @@
   <data name="UsernameExample" xml:space="preserve">
     <value>'marko_markovic'</value>
   </data>
+  <data name="NoUserWithSpecifiedUsername" xml:space="preserve">
+    <value>Ne postoji korisnik sa unetim korisničkim imenom.</value>
+  </data>
+  <data name="SenderEmailAddress" xml:space="preserve">
+    <value>acommunicator17@gmail.com</value>
+  </data>
+  <data name="WelcomeMailBody" xml:space="preserve">
+    <value>Poštovani,
+
+Hvala Vam što ste se registrovali!
+
+Srdačno,
+Vaš AKomunikator</value>
+  </data>
+  <data name="WelcomeMailSubject" xml:space="preserve">
+    <value>Dobrodošli!</value>
+  </data>
+  <data name="WrongPassword" xml:space="preserve">
+    <value>Uneta lozinka je pogrešna.</value>
+  </data>
 </root>

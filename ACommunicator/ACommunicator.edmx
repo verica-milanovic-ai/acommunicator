@@ -17,7 +17,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="nchar" MaxLength="50" />
           <Property Name="Username" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nchar" MaxLength="50" Nullable="false" />
@@ -37,8 +37,8 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="50" />
           <Property Name="Username" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="PicturePath" Type="nchar" MaxLength="255" />
         </EntityType>
@@ -46,11 +46,11 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Title" Type="nchar" MaxLength="20" Nullable="false" />
           <Property Name="Description" Type="nchar" MaxLength="255" />
-          <Property Name="PicturePath" Type="nchar" MaxLength="255" Nullable="false" />
-          <Property Name="SoundPath" Type="nchar" MaxLength="255" Nullable="false" />
+          <Property Name="PicturePath" Type="nchar" MaxLength="255" />
+          <Property Name="SoundPath" Type="nchar" MaxLength="255" />
         </EntityType>
         <Association Name="FK__AUserEndU__AUser__164452B1">
           <End Role="AUsers" Type="Self.AUsers" Multiplicity="1" />
@@ -145,7 +145,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="PicturePath" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="AUsers" Relationship="Self.AUserEndUser" FromRole="EndUsers" ToRole="AUsers" />
@@ -158,8 +158,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
-          <Property Name="PicturePath" Type="String" MaxLength="255" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="SoundPath" Type="String" MaxLength="255" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="PicturePath" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+          <Property Name="SoundPath" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="EndUsers" Relationship="Self.EndUserOption" FromRole="Options" ToRole="EndUsers" />
         </EntityType>
         <Association Name="AUserEndUser">

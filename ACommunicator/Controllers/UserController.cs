@@ -1,79 +1,66 @@
-﻿using ACommunicator.Models;
+﻿using System.Web;
 using System.Web.Mvc;
-using System.Data.Entity;
-using System.Data.Entity.Validation;
-using System.Linq;
+using ACommunicator.Helpers;
+using ACommunicator.Models;
 
 namespace ACommunicator.Controllers
 {
     public class UserController : Controller
     {
-
         [HttpGet]
-        public ActionResult Login()
+        public ActionResult Index()
         {
-                return View(new LoginViewModel());
-        }
+            var aUserCookie = Request.Cookies.Get(CookieHelper.AUserCookie);
+            var username = aUserCookie?.Value;
 
-        [HttpPost]
-        public ActionResult Login(LoginViewModel loginViewModel)
-        {
-            using (var db = new ACommunicatorEntities())
+            // If aUserCookie is empty, go back to login screen.
+            if (string.IsNullOrEmpty(username))
             {
-
-                var usr = db.AUsers.SingleOrDefault(u => u.Username == loginViewModel.Username && u.Password == loginViewModel.Password);
-                if(usr != null)
-                {
-                    Session["UserID"] = usr.Id.ToString();
-                    Session["Username"] = usr.Username.ToString();
-                    return RedirectToAction("Index", "Home");
-                } else {
-                    ModelState.AddModelError("", "Username or password is wrong.");
-                }
+                return RedirectToAction("Login", "Home");
             }
+
+            // TODO: fetch all end users for this admin user
+
+
             return View();
         }
 
-        [HttpGet]
-        public ActionResult Register()
+        [HttpPost]
+        public ActionResult Index(IndexViewModel indexViewModel)
         {
-            return View(new RegisterViewModel());
+            var endUserCookie = new HttpCookie(CookieHelper.EndUserCookie, indexViewModel.SelectedEndUser.ToString());
+            Response.Cookies.Add(endUserCookie);
+
+            return RedirectToAction("EndUserIdex");
+        }
+
+        [HttpGet]
+        public ActionResult EndUserIdex()
+        {
+            var endUserCookie = Request.Cookies.Get(CookieHelper.EndUserCookie);
+            var endUserId = endUserCookie?.Value;
+
+            if (string.IsNullOrEmpty(endUserId))
+            {
+                return RedirectToAction("NotFound","Error");
+            }
+
+            // TODO: fetch starting point options to display
+
+            return View();
         }
 
         [HttpPost]
-        public ActionResult Register(RegisterViewModel registerViewModel)
+        public ActionResult Logout()
         {
-            if (ModelState.IsValid)
-            {
-                using (var db = new ACommunicatorEntities())
-                {
-                    var usr = new AUser()
-                    {
-                        Username = registerViewModel.Username,
-                        Email = registerViewModel.Email,
-                        Password = registerViewModel.Password
-                    };
-                    db.AUsers.Add(usr);
-                    try
-                    {
-                        db.SaveChanges();
-                    }
-                    catch (DbEntityValidationException ex)
-                    {
-                        foreach (var entityValidationErrors in ex.EntityValidationErrors)
-                        {
-                            foreach (var validationError in entityValidationErrors.ValidationErrors)
-                            {
-                                Response.Write("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
-                            }
-                        }
-                    }
-                    ModelState.Clear();
-                    ViewBag.Message = usr.Username + " successfully registered.";
-                    return RedirectToAction("Index", "Home");
-                }
-            }
-            return View();
+            // TODO: remove both cookies - endUser and aUser
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult LogoutChild()
+        {
+            // TODO: remove endUser cookie
+            return RedirectToAction("Index");
         }
     }
 }

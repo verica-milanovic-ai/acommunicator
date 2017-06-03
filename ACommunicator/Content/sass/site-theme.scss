@@ -67,7 +67,11 @@ body {
     }
 }
 
-.login-form {
+/*
+    Login and Register Form
+*/
+
+.login-form, .register-form {
     .btn-login,
     .btn-register {
         background-color: $primary-color;
@@ -89,7 +93,6 @@ body {
         background-color: $primary-color-darker;
         border-color: $primary-color;
     }
-
 
     .panel-login {
         border-color: $primary-color-lighter;
@@ -149,4 +152,16 @@ body {
         box-shadow: none;
         border-color: $primary-color-lighter;
     }
+}
+
+/*
+    Validation Messages
+*/
+
+.field-validation-error {
+    color: $error-color;
+}
+
+.input-validation-error {
+    border-color: $error-color-lighter;
 }
