@@ -50,17 +50,24 @@ namespace ACommunicator.Controllers
             return View();
         }
 
-        [HttpPost]
         public ActionResult Logout()
         {
-            // TODO: remove both cookies - endUser and aUser
+            CookieHelper.RemoveCookie(CookieHelper.EndUserCookie, Response);
+            CookieHelper.RemoveCookie(CookieHelper.AUserCookie, Response);
             return RedirectToAction("Index", "Home");
         }
 
         public ActionResult LogoutChild()
         {
-            // TODO: remove endUser cookie
+            CookieHelper.RemoveCookie(CookieHelper.EndUserCookie, Response);
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult AccountCreated()
+        {
+            // TODO: display account created message
+            return View();
         }
     }
 }

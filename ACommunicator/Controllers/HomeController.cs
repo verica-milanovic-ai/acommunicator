@@ -38,7 +38,7 @@ namespace ACommunicator.Controllers
 
             var aUser = UserHelper.GetAUserByUsername(loginViewModel.Username);
 
-            if (aUser != null && aUser.Password.Equals(loginViewModel.Password))
+            if (aUser != null && aUser.Password.Trim().Equals(loginViewModel.Password))
             {
                 var userCookie = new HttpCookie(CookieHelper.AUserCookie, loginViewModel.Username);
                 Response.Cookies.Add(userCookie);
@@ -67,24 +67,39 @@ namespace ACommunicator.Controllers
         [HttpPost]
         public ActionResult Register(RegisterViewModel registerViewModel)
         {
-            // TODO: check model - does user with the same username already exist
-            // TODO: is password confiramtion matching entered password
-            // TODO: is email correct - check format
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var aUser = new AUser
-                {
-                    Username = registerViewModel.Username,
-                    Password = registerViewModel.Password,
-                    Email = registerViewModel.Email
-                };
-
-                UserHelper.AddAUser(aUser);
-                EmailHelper.SendWelcomeMail(aUser.Email);
-
-                return RedirectToAction("AccountCreated", "User");
+                registerViewModel.Password = "";
+                registerViewModel.ConfirmPassword = "";
+                return View(registerViewModel);
             }
-            return View(registerViewModel);
+            if (UserHelper.UsernameExists(registerViewModel.Username))
+            {
+                ModelState.AddModelError("Username", string.Format(Resources.UsernameAlreadyExists, registerViewModel.Username));
+                registerViewModel.Password = "";
+                registerViewModel.ConfirmPassword = "";
+                return View(registerViewModel);
+            }
+            if (!registerViewModel.Password.Equals(registerViewModel.ConfirmPassword))
+            {
+                ModelState.AddModelError("ConfirmPassword", Resources.ConfirmPasswordMustMatchPassword);
+                registerViewModel.Password = "";
+                registerViewModel.ConfirmPassword = "";
+                return View(registerViewModel);
+            }
+
+
+            var aUser = new AUser
+            {
+                Username = registerViewModel.Username,
+                Password = registerViewModel.Password,
+                Email = registerViewModel.Email
+            };
+
+            UserHelper.AddAUser(aUser);
+            EmailHelper.SendWelcomeMail(aUser.Email);
+
+            return RedirectToAction("AccountCreated", "User");
         }
     }
 }

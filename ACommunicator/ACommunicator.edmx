@@ -17,7 +17,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nchar" MaxLength="50" />
           <Property Name="Username" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nchar" MaxLength="50" Nullable="false" />
@@ -37,7 +37,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nchar" MaxLength="50" />
           <Property Name="Username" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="PicturePath" Type="nchar" MaxLength="255" />
@@ -46,7 +46,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nchar" MaxLength="20" Nullable="false" />
           <Property Name="Description" Type="nchar" MaxLength="255" />
           <Property Name="PicturePath" Type="nchar" MaxLength="255" />

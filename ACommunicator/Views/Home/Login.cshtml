@@ -9,7 +9,7 @@
                         <a href="#" class="active" id="login-form-link">@Resources.LogIn</a>
                     </div>
                     <div class="col-xs-6">
-                        <a href="/User/Register" id="register-form-link">@Resources.Register</a>
+                        <a href="/Home/Register" id="register-form-link">@Resources.Register</a>
                     </div>
                 </div>
                 <hr>
@@ -17,7 +17,7 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-12">
-                        <form id="login-form" action="/User/Login" method="post" role="form" style="display: block;">
+                        <form id="login-form" action="/Home/Login" method="post" role="form" style="display: block;">
                             <div class="form-group">
                                 @Html.LabelFor(x => x.Username)
                                 @Html.TextBoxFor(x => x.Username, new { @tabindex = "1", @placeholder = Resources.UsernameExample, @class = "form-control" })

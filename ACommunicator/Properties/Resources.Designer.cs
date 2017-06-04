@@ -79,6 +79,15 @@ namespace ACommunicator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Potvrda lozinke mora biti ista kao i uneta lozinka..
+        /// </summary>
+        public static string ConfirmPasswordMustMatchPassword {
+            get {
+                return ResourceManager.GetString("ConfirmPasswordMustMatchPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email adresa.
         /// </summary>
         public static string Email {
@@ -102,6 +111,24 @@ namespace ACommunicator.Properties {
         public static string LogIn {
             get {
                 return ResourceManager.GetString("LogIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Odjavi se.
+        /// </summary>
+        public static string Logout {
+            get {
+                return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Odjavi dete.
+        /// </summary>
+        public static string LogoutChild {
+            get {
+                return ResourceManager.GetString("LogoutChild", resourceCulture);
             }
         }
         
@@ -205,6 +232,16 @@ namespace ACommunicator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Korisnik sa korisničkim imenom &apos; {0} &apos; već postoji. 
+        ///Molimo Vas da izaberete drugo korisničko ime. .
+        /// </summary>
+        public static string UsernameAlreadyExists {
+            get {
+                return ResourceManager.GetString("UsernameAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &apos;marko_markovic&apos;.
         /// </summary>
         public static string UsernameExample {
@@ -233,6 +270,15 @@ namespace ACommunicator.Properties {
         public static string WelcomeMailSubject {
             get {
                 return ResourceManager.GetString("WelcomeMailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pogrešan format email adrese..
+        /// </summary>
+        public static string WrongEmailFormat {
+            get {
+                return ResourceManager.GetString("WrongEmailFormat", resourceCulture);
             }
         }
         

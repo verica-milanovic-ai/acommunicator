@@ -182,4 +182,20 @@ Vaš AKomunikator</value>
   <data name="WrongPassword" xml:space="preserve">
     <value>Uneta lozinka je pogrešna.</value>
   </data>
+  <data name="ConfirmPasswordMustMatchPassword" xml:space="preserve">
+    <value>Potvrda lozinke mora biti ista kao i uneta lozinka.</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Odjavi se</value>
+  </data>
+  <data name="LogoutChild" xml:space="preserve">
+    <value>Odjavi dete</value>
+  </data>
+  <data name="UsernameAlreadyExists" xml:space="preserve">
+    <value>Korisnik sa korisničkim imenom ' {0} ' već postoji. 
+Molimo Vas da izaberete drugo korisničko ime. </value>
+  </data>
+  <data name="WrongEmailFormat" xml:space="preserve">
+    <value>Pogrešan format email adrese.</value>
+  </data>
 </root>

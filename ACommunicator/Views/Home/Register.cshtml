@@ -6,7 +6,7 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-6">
-                        <a href="/User/Login" id="login-form-link">@Resources.LogIn</a>
+                        <a href="/Home/Login" id="login-form-link">@Resources.LogIn</a>
                     </div>
                     <div class="col-xs-6">
                         <a href="#" class="active" id="register-form-link">@Resources.Register</a>
@@ -17,22 +17,26 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-12">
-                        <form id="register-form" action="/User/Register" method="post" role="form">
+                        <form id="register-form" action="/Home/Register" method="post" role="form">
                             <div class="form-group">
                                 @Html.LabelFor(x => x.Username)
                                 @Html.TextBoxFor(x => x.Username, new { @tabindex = "1", @placeholder = Resources.UsernameExample, @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.Username)
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(x => x.Email)
                                 @Html.TextBoxFor(x => x.Email, new { @tabindex = "2", @placeholder = Resources.EmailExample, @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.Email)
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(x => x.Password)
                                 @Html.PasswordFor(x => x.Password, new { @tabindex = "3", @placeholder = Resources.PasswordExample, @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.Password)
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(x => x.ConfirmPassword)
                                 @Html.PasswordFor(x => x.ConfirmPassword, new { @tabindex = "4", @placeholder = Resources.PasswordExample, @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.ConfirmPassword)
                             </div>
                             <div class="form-group">
                                 <div class="row">

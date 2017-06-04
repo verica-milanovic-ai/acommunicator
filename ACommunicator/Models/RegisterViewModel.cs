@@ -11,6 +11,7 @@ namespace ACommunicator.Models
 
         [Required(ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "RequiredEmail")]
         [Display(ResourceType = typeof(Resources), Name = "Email")]
+        [EmailAddress(ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "WrongEmailFormat")]
         public string Email { get; set; }
     }
 }

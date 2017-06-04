@@ -13,11 +13,16 @@ namespace ACommunicator.Helpers
 
         public static void AddAUser(AUser aUser)
         {
-            if (!string.IsNullOrEmpty(aUser?.Username) && !string.IsNullOrEmpty(aUser.Password) && !string.IsNullOrEmpty(aUser.Email))
-            {
-                DbContext.AUsers.Add(aUser);
-                DbContext.SaveChanges();
-            }
+            if (string.IsNullOrEmpty(aUser?.Username) || string.IsNullOrEmpty(aUser.Password) ||
+                string.IsNullOrEmpty(aUser.Email)) return;
+            DbContext.AUsers.Add(aUser);
+            DbContext.SaveChanges();
+        }
+
+        public static bool UsernameExists(string username)
+        {
+            if (string.IsNullOrEmpty(username)) return false;
+            return DbContext.AUsers.FirstOrDefault(x => x.Username.Equals(username)) != null;
         }
 
     }
