@@ -142,6 +142,15 @@ namespace ACommunicator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ime.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ne postoji korisnik sa unetim korisničkim imenom..
         /// </summary>
         public static string NoUserWithSpecifiedUsername {

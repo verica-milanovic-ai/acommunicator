@@ -51,7 +51,7 @@ namespace ACommunicator.Controllers
             {
                 ModelState.AddModelError("Username", Resources.NoUserWithSpecifiedUsername);
             }
-            if (aUser != null && !aUser.Password.Equals(loginViewModel.Password))
+            if (aUser != null && !aUser.Password.Trim().Equals(loginViewModel.Password))
             {
                 ModelState.AddModelError("Password", Resources.WrongPassword);
             }

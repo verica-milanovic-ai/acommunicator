@@ -51,6 +51,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -103,6 +107,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\imgs\default.png" />
     <Content Include="Content\imgs\img1.png" />
     <Content Include="Content\imgs\img2.png" />
     <Content Include="Content\imgs\img3.png" />
@@ -136,6 +141,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\sass\site-theme.scss" />
     <Content Include="Content\sass\site-theme-variables.scss" />
+    <Content Include="App_Config\AppSettings.config" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -189,11 +195,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\AppSettings.cs" />
     <Compile Include="Helpers\CookieHelper.cs" />
     <Compile Include="Helpers\EmailHelper.cs" />
+    <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Helpers\UserHelper.cs" />
+    <Compile Include="Models\EditEndUserViewModel.cs" />
     <Compile Include="Models\IndexViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\RegisterChildViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Option.cs">
       <DependentUpon>ACommunicator.tt</DependentUpon>
@@ -204,6 +214,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ValidationAttributes\FileSizeAttribute.cs" />
+    <Compile Include="ValidationAttributes\FileTypesAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config">

@@ -9,5 +9,11 @@ namespace ACommunicator.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public ActionResult SomethingWentWrong()
+        {
+            return View();
+        }
     }
 }
