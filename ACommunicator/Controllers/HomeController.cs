@@ -6,9 +6,8 @@ using ACommunicator.Properties;
 
 namespace ACommunicator.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-
         public ActionResult Index()
         {
             var endUserCookie = Request.Cookies.Get(CookieHelper.EndUserCookie)?.Value;

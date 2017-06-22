@@ -265,3 +265,4 @@ __pycache__/
 *.pyc
 /Website/lib/Faber.Common.dll
 dist
+/ACommunicator/logs

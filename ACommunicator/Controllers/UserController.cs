@@ -1,6 +1,4 @@
-﻿using System;
-using System.Configuration;
-using System.IO;
+﻿using System.IO;
 using System.Web;
 using System.Web.Mvc;
 using ACommunicator.Helpers;
@@ -8,7 +6,7 @@ using ACommunicator.Models;
 
 namespace ACommunicator.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         [HttpGet]
         public ActionResult Index()

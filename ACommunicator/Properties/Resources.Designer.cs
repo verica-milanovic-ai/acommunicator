@@ -70,6 +70,15 @@ namespace ACommunicator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Los zahtev..
+        /// </summary>
+        public static string BadRequestMessage {
+            get {
+                return ResourceManager.GetString("BadRequestMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Potvrda lozinke.
         /// </summary>
         public static string ConfirmPassword {
@@ -151,6 +160,15 @@ namespace ACommunicator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Stranica nije pronadjena..
+        /// </summary>
+        public static string NotFoundMessage {
+            get {
+                return ResourceManager.GetString("NotFoundMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ne postoji korisnik sa unetim korisničkim imenom..
         /// </summary>
         public static string NoUserWithSpecifiedUsername {
@@ -228,6 +246,15 @@ namespace ACommunicator.Properties {
         public static string SenderEmailAddress {
             get {
                 return ResourceManager.GetString("SenderEmailAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Doslo je do greske. Nas tim vec radi na resenju..
+        /// </summary>
+        public static string SomethingWentWrongMessage {
+            get {
+                return ResourceManager.GetString("SomethingWentWrongMessage", resourceCulture);
             }
         }
         

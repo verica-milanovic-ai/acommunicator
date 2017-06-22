@@ -201,4 +201,13 @@ Molimo Vas da izaberete drugo korisničko ime. </value>
   <data name="Name" xml:space="preserve">
     <value>Ime</value>
   </data>
+  <data name="BadRequestMessage" xml:space="preserve">
+    <value>Los zahtev.</value>
+  </data>
+  <data name="NotFoundMessage" xml:space="preserve">
+    <value>Stranica nije pronadjena.</value>
+  </data>
+  <data name="SomethingWentWrongMessage" xml:space="preserve">
+    <value>Doslo je do greske. Nas tim vec radi na resenju.</value>
+  </data>
 </root>
