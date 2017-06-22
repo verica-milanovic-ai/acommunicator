@@ -101,6 +101,14 @@ namespace ACommunicator.Controllers
             });
         }
 
+        [HttpPost]
+        public ActionResult EditEndUserProfile(EditEndUserViewModel editEndUserViewModel)
+        {
+            // TODO: check if changed data is valid
+            // TODO: save changed data to DB
+            return View(editEndUserViewModel);
+        }
+
         [HttpGet]
         public ActionResult EndUserIdex()
         {
