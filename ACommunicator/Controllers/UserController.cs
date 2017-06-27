@@ -25,7 +25,7 @@ namespace ACommunicator.Controllers
             int.TryParse(endUserCookie?.Value, out endUserId);
 
             // If endUserCookie is empty, go to index screen for aUser
-            if (endUserId == -1)
+            if (endUserId < 1)
             {
                 return View(new IndexViewModel
                 {
