@@ -96,6 +96,7 @@ namespace ACommunicator.Controllers
             };
 
             UserHelper.AddAUser(aUser);
+
             EmailHelper.SendWelcomeMail(aUser.Email);
 
             return RedirectToAction("AccountCreated", "User");

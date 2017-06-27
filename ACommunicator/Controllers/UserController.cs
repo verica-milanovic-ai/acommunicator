@@ -56,8 +56,7 @@ namespace ACommunicator.Controllers
         [HttpPost]
         public ActionResult RegisterChild(RegisterChildViewModel registerChildViewModel)
         {
-            if (!ModelState.IsValid)
-                return View(registerChildViewModel);
+            if (!ModelState.IsValid) { return View(registerChildViewModel); }
 
             // Save profile picture for end user
             var picturePath = SaveProfilePicture(registerChildViewModel);
@@ -86,7 +85,7 @@ namespace ACommunicator.Controllers
             {
                 return RedirectToAction("SomethingWentWrong", "Error");
             }
-            
+
             var endUserId = -1;
             int.TryParse(endUserIdString, out endUserId);
             var endUser = UserHelper.GetEndUserById(endUserId);
@@ -97,15 +96,17 @@ namespace ACommunicator.Controllers
             }
             return View(new EditEndUserViewModel
             {
-                EndUser = endUser
+                EndUser = endUser,
+                IsSuccessfullySaved = null
             });
         }
 
         [HttpPost]
         public ActionResult EditEndUserProfile(EditEndUserViewModel editEndUserViewModel)
         {
-            // TODO: check if changed data is valid
-            // TODO: save changed data to DB
+            if (!ModelState.IsValid) { return View(editEndUserViewModel); }
+
+            editEndUserViewModel.IsSuccessfullySaved = UserHelper.UpdateEndUser(editEndUserViewModel.EndUser);
             return View(editEndUserViewModel);
         }
 

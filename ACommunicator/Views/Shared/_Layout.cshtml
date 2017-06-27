@@ -1,5 +1,4 @@
-﻿@using System.Diagnostics.Eventing.Reader
-@using ACommunicator.Helpers
+﻿@using ACommunicator.Helpers
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,13 +19,13 @@
                 <img src="~/Content/imgs/logo.png" />
             </div>
             <div class="navbar-header navbar-right navbar-bottom">
-                @Html.ActionLink(ACommunicator.Properties.Resources.ACommunicator, "Index", "Home", new { @class = "navbar-brand title" })
-                @Html.ActionLink(ACommunicator.Properties.Resources.MetaCommunicator, "Index", "Home", new { @class = "navbar-brand title" })
-                @(string.IsNullOrEmpty(Request.Cookies.Get(CookieHelper.AUserCookie)?.Value) 
-                    ? Html.ActionLink(ACommunicator.Properties.Resources.LogIn, "Login", "Home", new {@class = "navbar-brand title"}) 
-                      : Html.ActionLink(ACommunicator.Properties.Resources.Logout, "Logout", "User", new {@class = "navbar-brand title"}))
+                @Html.ActionLink(ACommunicator.Properties.Resources.ACommunicator, "Index", "Home", null, new { @class = "navbar-brand title" })
+                @Html.ActionLink(ACommunicator.Properties.Resources.MetaCommunicator, "Index", "Home", null, new { @class = "navbar-brand title" })
+                @(string.IsNullOrEmpty(Request.Cookies.Get(CookieHelper.AUserCookie)?.Value)
+                    ? Html.ActionLink(ACommunicator.Properties.Resources.LogIn, "Login", "Home", null, new {@class = "navbar-brand title"})
+                      : Html.ActionLink(ACommunicator.Properties.Resources.Logout, "Logout", "User", null, new {@class = "navbar-brand title"}))
                 @if (!string.IsNullOrEmpty(Request.Cookies.Get(CookieHelper.EndUserCookie)?.Value))
-                { @Html.ActionLink(ACommunicator.Properties.Resources.LogoutChild, "LogoutChild", "User", new { @class = "navbar-brand title" }) }
+                { @Html.ActionLink(ACommunicator.Properties.Resources.LogoutChild, "LogoutChild", "User", null, new { @class = "navbar-brand title" }) }
             </div>
         </div>
     </div>

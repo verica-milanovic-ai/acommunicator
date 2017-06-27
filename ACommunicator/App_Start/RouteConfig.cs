@@ -14,6 +14,7 @@ namespace ACommunicator
                 url: "{controller}/{action}/{id}",
                 defaults: new { area = "", controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
         }
     }
 }

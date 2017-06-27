@@ -13,12 +13,14 @@ namespace ACommunicator.Helpers
             return string.IsNullOrEmpty(username) ? null : DbContext.AUsers.FirstOrDefault(x => x.Username.Equals(username));
         }
 
-        public static void AddAUser(AUser aUser)
+        public static AUser AddAUser(AUser aUser)
         {
             if (string.IsNullOrEmpty(aUser?.Username) || string.IsNullOrEmpty(aUser.Password) ||
-                string.IsNullOrEmpty(aUser.Email)) return;
-            DbContext.AUsers.Add(aUser);
+                string.IsNullOrEmpty(aUser.Email)) return null;
+            aUser = DbContext.AUsers.Add(aUser);
             DbContext.SaveChanges();
+
+            return aUser;
         }
 
         public static ICollection<EndUser> GetEndUserList(string username)
@@ -42,6 +44,22 @@ namespace ACommunicator.Helpers
         public static EndUser GetEndUserById(int id)
         {
             return id == -1 ? null : DbContext.EndUsers.FirstOrDefault(x => x.Id == id);
+        }
+
+        public static bool UpdateEndUser(EndUser endUser)
+        {
+            if (string.IsNullOrEmpty(endUser?.Username)) { return false; }
+
+            if (string.IsNullOrEmpty(endUser.Name)) { endUser.Name = endUser.Username; }
+            if (string.IsNullOrEmpty(endUser.PicturePath)) { endUser.PicturePath = DefaultPicutrePath; }
+
+            var original = DbContext.EndUsers.Find(endUser.Id);
+
+            if (original == null) return false;
+
+            DbContext.Entry(original).CurrentValues.SetValues(endUser);
+            DbContext.SaveChanges();
+            return true;
         }
 
         public static bool UsernameExists(string username)
