@@ -41,8 +41,7 @@ namespace ACommunicator.Controllers
         [HttpPost]
         public ActionResult Index(IndexViewModel indexViewModel)
         {
-            var endUserCookie = new HttpCookie(CookieHelper.EndUserCookie, indexViewModel.SelectedEndUserId.ToString());
-            Response.Cookies.Add(endUserCookie);
+            CookieHelper.AddCookie(CookieHelper.EndUserCookie, indexViewModel.SelectedEndUserId.ToString(), Response);
 
             return RedirectToAction("EndUserIdex");
         }
@@ -72,7 +71,7 @@ namespace ACommunicator.Controllers
             });
 
             // Add endUser cookie for newly created End User
-            Response.Cookies.Add(new HttpCookie(CookieHelper.EndUserCookie, newEndUser.Id.ToString()));
+            CookieHelper.AddCookie(CookieHelper.EndUserCookie, newEndUser.Id.ToString(), Response);
 
             return RedirectToAction("EditEndUserProfile");
         }

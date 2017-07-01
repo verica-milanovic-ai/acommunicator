@@ -39,8 +39,7 @@ namespace ACommunicator.Controllers
 
             if (aUser != null && aUser.Password.Trim().Equals(loginViewModel.Password))
             {
-                var userCookie = new HttpCookie(CookieHelper.AUserCookie, loginViewModel.Username);
-                Response.Cookies.Add(userCookie);
+                CookieHelper.AddCookie(CookieHelper.AUserCookie, loginViewModel.Username, Response);
 
                 return RedirectToAction("Index", "User");
             }

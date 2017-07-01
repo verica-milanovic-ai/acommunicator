@@ -13,5 +13,15 @@ namespace ACommunicator.Helpers
             var aCookie = new HttpCookie(cookieName) {Expires = DateTime.Now.AddDays(-1)};
             response.Cookies.Add(aCookie);
         }
+
+        public static void AddCookie(string cookieName, string cookieValue, HttpResponseBase response)
+        {
+            var aCookie = new HttpCookie(cookieName, cookieValue)
+            {
+                HttpOnly = true,
+                Secure = true
+            };
+            response.Cookies.Add(aCookie);
+        }
     }
 }
