@@ -28,12 +28,13 @@
                             <div class="form-group">
                                 @Html.LabelFor(x => x.Name)
                                 @Html.TextBoxFor(x => x.Name, new { @tabindex = "2", @placeholder = Resources.NameExample, @class = "form-control" })
-                                @Html.ValidationMessageFor(x => x.Name)
                             </div>
                             <div class="form-group">
+                                @Html.LabelFor(x => x.Picture)
                                 <div class="form-control upload-file-control">
                                     @Html.TextBoxFor(x => x.Picture, new { type = "file", @tabindex = "3" })
                                 </div>
+                                @Html.ValidationMessageFor(x => x.Picture)
                             </div>
                             <div class="form-group">
                                 <div class="row">
