@@ -1,8 +1,9 @@
-﻿using System.IO;
-using System.Web;
+﻿using System;
+using System.IO;
 using System.Web.Mvc;
 using ACommunicator.Helpers;
 using ACommunicator.Models;
+using ACommunicator.Properties;
 
 namespace ACommunicator.Controllers
 {
@@ -49,25 +50,29 @@ namespace ACommunicator.Controllers
         [HttpGet]
         public ActionResult RegisterChild()
         {
-            return View();
+            return View(new RegisterChildViewModel());
         }
 
         [HttpPost]
         public ActionResult RegisterChild(RegisterChildViewModel registerChildViewModel)
         {
-            if (!ModelState.IsValid) { return View(registerChildViewModel); }
 
-            // Save profile picture for end user
-            var picturePath = SaveProfilePicture(registerChildViewModel);
+            if (!ModelState.IsValid)
+            {
+                return View(registerChildViewModel);
+            }
+
+            //Save picture on server
+            UploadFile(registerChildViewModel);
 
             // Save created EndUser to DB
             var newEndUser = UserHelper.AddEndUser(new EndUser()
             {
                 Username = registerChildViewModel.Username,
-                Name = string.IsNullOrEmpty(registerChildViewModel.Name) ?
-                registerChildViewModel.Username
-                : registerChildViewModel.Name,
-                PicturePath = picturePath
+                Name = string.IsNullOrEmpty(registerChildViewModel.Name)
+                            ? registerChildViewModel.Username
+                            : registerChildViewModel.Name,
+                PicturePath = registerChildViewModel.Picture.FileName
             });
 
             // Add endUser cookie for newly created End User
@@ -143,6 +148,36 @@ namespace ACommunicator.Controllers
         {
             // TODO: display account created message
             return View();
+        }
+
+        private void UploadFile(RegisterChildViewModel registerChildViewModel)
+        {
+
+            try
+            {
+                var file = registerChildViewModel.Picture;
+                var fileExtension = file.FileName.GetFileExtension();
+
+                if (!string.IsNullOrEmpty(fileExtension) && file.ContentLength > 0)
+                {
+                    var aUsername = Request.Cookies.Get(CookieHelper.AUserCookie)?.Value;
+
+                    // FileName pattern : a_<AdminUsername>_end_<EndUsername>_<DateTimeNow>.<fileExtension>
+                    // Example: a_admin_end_childusername_20170622133700.jpeg
+                    var fileName = string.Format(AppSettings.EndUserProfilePictureNamePattern,
+                        aUsername,
+                        registerChildViewModel.Username,
+                        DateTime.Now.ToString("yyyyMMddHHmmss"),
+                        fileExtension);
+
+                    registerChildViewModel.Picture.SaveAs(Path.Combine(Server.MapPath(AppSettings.EndUserProfilePictureDirectory), fileName));
+                }
+
+            }
+            catch (Exception e)
+            {
+                log.Error(e.Message, e);
+            }
         }
 
         private string SaveProfilePicture(RegisterChildViewModel registerChildViewModel)

@@ -1,0 +1,51 @@
+﻿@model ACommunicator.Models.RegisterChildViewModel
+@using ACommunicator.Helpers
+@using ACommunicator.Properties
+
+<div class="row login-form">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-login">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <a href="/Home/Login" id="login-form-link">@Resources.LogIn</a>
+                    </div>
+                    <div class="col-xs-6">
+                        <a href="#" class="active" id="register-form-link">@Resources.Register</a>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                       <form id="register-child-form" action="/User/RegisterChild" method="post" role="form" enctype="multipart/form-data">
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.Username)
+                                @Html.TextBoxFor(x => x.Username, new { @tabindex = "1", @placeholder = Resources.UsernameExample, @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.Username)
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.Name)
+                                @Html.TextBoxFor(x => x.Name, new { @tabindex = "2", @placeholder = Resources.NameExample, @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.Name)
+                            </div>
+                            <div class="form-group">
+                                <div class="form-control upload-file-control">
+                                    @Html.TextBoxFor(x => x.Picture, new { type = "file", @tabindex = "3" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-6 col-sm-offset-3">
+                                        <button type="submit" name="action" id="register-child-submit" tabindex="5" class="form-control btn btn-register">@Resources.Register</button>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -18,8 +18,7 @@ namespace ACommunicator.Helpers
         {
             var aCookie = new HttpCookie(cookieName, cookieValue)
             {
-                HttpOnly = true,
-                Secure = true
+                HttpOnly = true
             };
             response.Cookies.Add(aCookie);
         }

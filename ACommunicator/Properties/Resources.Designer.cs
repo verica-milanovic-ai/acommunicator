@@ -115,6 +115,24 @@ namespace ACommunicator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Slika je uspesno postavljena!.
+        /// </summary>
+        public static string FileUploadedSuccessfully {
+            get {
+                return ResourceManager.GetString("FileUploadedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Postavljanje slike nije uspelo..
+        /// </summary>
+        public static string FileUploadFailed {
+            get {
+                return ResourceManager.GetString("FileUploadFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Prijavi se.
         /// </summary>
         public static string LogIn {
@@ -160,6 +178,15 @@ namespace ACommunicator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &apos;Marko&apos;.
+        /// </summary>
+        public static string NameExample {
+            get {
+                return ResourceManager.GetString("NameExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stranica nije pronadjena..
         /// </summary>
         public static string NotFoundMessage {
@@ -201,6 +228,15 @@ namespace ACommunicator.Properties {
         public static string Register {
             get {
                 return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registruj dete.
+        /// </summary>
+        public static string RegisterChild {
+            get {
+                return ResourceManager.GetString("RegisterChild", resourceCulture);
             }
         }
         
@@ -255,6 +291,15 @@ namespace ACommunicator.Properties {
         public static string SomethingWentWrongMessage {
             get {
                 return ResourceManager.GetString("SomethingWentWrongMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Postavi sliku.
+        /// </summary>
+        public static string UploadPhoto {
+            get {
+                return ResourceManager.GetString("UploadPhoto", resourceCulture);
             }
         }
         

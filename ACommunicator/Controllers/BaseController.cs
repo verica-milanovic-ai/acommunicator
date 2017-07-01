@@ -17,14 +17,14 @@ namespace ACommunicator.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var request = filterContext.RequestContext.HttpContext.Request.HttpMethod 
-                + ": " + filterContext.ActionDescriptor.ControllerDescriptor.ControllerName 
-                + "Controller/" + filterContext.ActionDescriptor.ActionName 
-                + "; params: " + JsonConvert.SerializeObject(filterContext.ActionParameters);
+            //var request = filterContext.RequestContext.HttpContext.Request.HttpMethod 
+            //    + ": " + filterContext.ActionDescriptor.ControllerDescriptor.ControllerName 
+            //    + "Controller/" + filterContext.ActionDescriptor.ActionName 
+            //    + "; params: " + JsonConvert.SerializeObject(filterContext.ActionParameters);
 
-            log.Debug(request);
+            //log.Debug(request);
 
-            base.OnActionExecuting(filterContext);
+            //base.OnActionExecuting(filterContext);
         }
 
     }

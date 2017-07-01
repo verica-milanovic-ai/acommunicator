@@ -25,15 +25,15 @@
             <div class="navbar-header navbar-right navbar-bottom">
                 @if (string.IsNullOrEmpty(endUserCookie) && !string.IsNullOrEmpty(aUserCookie))
                 {
-                    @Html.ActionLink(ACommunicator.Properties.Resources.ACommunicator, "Index", "Home", null, new {@class = "navbar-brand title"})
-                    @Html.ActionLink(ACommunicator.Properties.Resources.MetaCommunicator, "Index", "Home", null, new {@class = "navbar-brand title"})
+                    @Html.ActionLink(ACommunicator.Properties.Resources.ACommunicator, "Index", "Home", null, new { @class = "navbar-brand title" })
+                    @Html.ActionLink(ACommunicator.Properties.Resources.MetaCommunicator, "Index", "Home", null, new { @class = "navbar-brand title" })
                 }
                 @(string.IsNullOrEmpty(aUserCookie)
-                      ? Html.ActionLink(ACommunicator.Properties.Resources.LogIn, "Login", "Home", null, new {@class = "navbar-brand title"})
-                      : Html.ActionLink(ACommunicator.Properties.Resources.Logout, "Logout", "User", null, new {@class = "navbar-brand title"}))
+                      ? Html.ActionLink(ACommunicator.Properties.Resources.LogIn, "Login", "Home", null, new { @class = "navbar-brand title" })
+                      : Html.ActionLink(ACommunicator.Properties.Resources.Logout, "Logout", "User", null, new { @class = "navbar-brand title" }))
                 @if (!string.IsNullOrEmpty(endUserCookie))
                 {
-                    @Html.ActionLink(ACommunicator.Properties.Resources.LogoutChild, "LogoutChild", "User", null, new {@class = "navbar-brand title"})
+                    @Html.ActionLink(ACommunicator.Properties.Resources.LogoutChild, "LogoutChild", "User", null, new { @class = "navbar-brand title" })
                 }
             </div>
         </div>
@@ -50,5 +50,8 @@
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+
+
+    <script src="~/Scripts/app/app-scripts.js"></script>
 </body>
 </html>

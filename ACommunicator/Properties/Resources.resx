@@ -210,4 +210,19 @@ Molimo Vas da izaberete drugo korisničko ime. </value>
   <data name="SomethingWentWrongMessage" xml:space="preserve">
     <value>Doslo je do greske. Nas tim vec radi na resenju.</value>
   </data>
+  <data name="FileUploadedSuccessfully" xml:space="preserve">
+    <value>Slika je uspesno postavljena!</value>
+  </data>
+  <data name="FileUploadFailed" xml:space="preserve">
+    <value>Postavljanje slike nije uspelo.</value>
+  </data>
+  <data name="NameExample" xml:space="preserve">
+    <value>'Marko'</value>
+  </data>
+  <data name="UploadPhoto" xml:space="preserve">
+    <value>Postavi sliku</value>
+  </data>
+  <data name="RegisterChild" xml:space="preserve">
+    <value>Registruj dete</value>
+  </data>
 </root>

@@ -17,6 +17,7 @@ namespace ACommunicator.Models
         // TODO: decide if this is Image after all?
         [FileSize(10240)]
         [FileTypes("jpg,jpeg,png")]
+        [Display(ResourceType = typeof(Resources), Name="UploadPhoto")]
         public HttpPostedFileBase Picture { get; set; }
     }
 }
