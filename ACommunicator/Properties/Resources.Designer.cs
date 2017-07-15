@@ -115,6 +115,15 @@ namespace ACommunicator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Maksimalna dozvoljena velicina slike je {0}..
+        /// </summary>
+        public static string FileSizeLimit {
+            get {
+                return ResourceManager.GetString("FileSizeLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Slika je uspesno postavljena!.
         /// </summary>
         public static string FileUploadedSuccessfully {
@@ -129,6 +138,15 @@ namespace ACommunicator.Properties {
         public static string FileUploadFailed {
             get {
                 return ResourceManager.GetString("FileUploadFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Neispravan tip datoteke. Podrzani su samo sledeci tipovi: {0}..
+        /// </summary>
+        public static string InvalidFileType {
+            get {
+                return ResourceManager.GetString("InvalidFileType", resourceCulture);
             }
         }
         

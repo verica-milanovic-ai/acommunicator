@@ -225,4 +225,10 @@ Molimo Vas da izaberete drugo korisničko ime. </value>
   <data name="RegisterChild" xml:space="preserve">
     <value>Registruj dete</value>
   </data>
+  <data name="FileSizeLimit" xml:space="preserve">
+    <value>Maksimalna dozvoljena velicina slike je {0}.</value>
+  </data>
+  <data name="InvalidFileType" xml:space="preserve">
+    <value>Neispravan tip datoteke. Podrzani su samo sledeci tipovi: {0}.</value>
+  </data>
 </root>

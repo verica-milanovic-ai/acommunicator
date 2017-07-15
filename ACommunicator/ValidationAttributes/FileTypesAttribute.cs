@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using ACommunicator.Properties;
 
 namespace ACommunicator.ValidationAttributes
 {
@@ -25,8 +26,7 @@ namespace ACommunicator.ValidationAttributes
 
         public override string FormatErrorMessage(string name)
         {
-            // TODO: refactor message to use it from resources file
-            return string.Format("Invalid file type. Only the following types {0} are supported.", string.Join(", ", _types));
+            return string.Format(Resources.InvalidFileType, string.Join(", ", _types));
         }
     }
 }
