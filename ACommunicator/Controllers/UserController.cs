@@ -4,7 +4,6 @@ using System.IO;
 using System.Web.Mvc;
 using ACommunicator.Helpers;
 using ACommunicator.Models;
-using ACommunicator.Properties;
 
 namespace ACommunicator.Controllers
 {
@@ -66,7 +65,6 @@ namespace ACommunicator.Controllers
             //Save picture on server
             UploadFile(registerChildViewModel);
 
-
             var aUsername = Request.Cookies.Get(CookieHelper.AUserCookie)?.Value;
             var aUser = UserHelper.GetAUserByUsername(aUsername);
 
@@ -77,13 +75,15 @@ namespace ACommunicator.Controllers
                 Name = string.IsNullOrEmpty(registerChildViewModel.Name)
                     ? registerChildViewModel.Username
                     : registerChildViewModel.Name,
-                PicturePath = registerChildViewModel.Picture.FileName,
+                PicturePath = registerChildViewModel.Picture != null ?
+                registerChildViewModel.Picture.FileName
+                : AppSettings.DefaultProfilePictureFileName,
                 AUsers = new List<AUser>()
             };
 
             newEndUser.AUsers.Add(aUser);
             newEndUser = UserHelper.AddEndUser(newEndUser);
-            
+
             // Add endUser cookie for newly created End User
             CookieHelper.AddCookie(CookieHelper.EndUserCookie, newEndUser.Id.ToString(), Response);
 
@@ -165,7 +165,7 @@ namespace ACommunicator.Controllers
             try
             {
                 var file = registerChildViewModel.Picture;
-                var fileExtension = file.FileName.GetFileExtension();
+                var fileExtension = file?.FileName.GetFileExtension();
 
                 if (!string.IsNullOrEmpty(fileExtension) && file.ContentLength > 0)
                 {

@@ -1,7 +1,5 @@
-﻿using System.Text;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using log4net;
-using Newtonsoft.Json;
 
 namespace ACommunicator.Controllers
 {
