@@ -1,9 +1,13 @@
-﻿
+﻿@model ACommunicator.Models.IndexViewModel
+
+
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
+
+<h3>Num of children: @Model.EndUserList.Count</h3>
 
 @Html.ActionLink(ACommunicator.Properties.Resources.RegisterChild, "RegisterChild", "User", null)
 

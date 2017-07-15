@@ -62,6 +62,24 @@ namespace ACommunicator.Helpers
             return true;
         }
 
+        public static bool UpdateAUser(AUser aUser)
+        {
+            if (string.IsNullOrEmpty(aUser?.Username)) { return false; }
+
+            if (string.IsNullOrEmpty(aUser.Name)) { aUser.Name = aUser.Username; }
+            if (string.IsNullOrEmpty(aUser.PicturePath)) { aUser.PicturePath = DefaultPicutrePath; }
+            
+
+            var original = DbContext.AUsers.Find(aUser.Id);
+
+            if (original == null) return false;
+
+            DbContext.Entry(original).CurrentValues.SetValues(aUser);
+            DbContext.SaveChanges();
+            return true;
+        }
+
+
         public static bool UsernameExists(string username)
         {
             if (string.IsNullOrEmpty(username)) return false;

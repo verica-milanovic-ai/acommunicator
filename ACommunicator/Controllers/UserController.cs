@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Web.Mvc;
 using ACommunicator.Helpers;
@@ -65,16 +66,24 @@ namespace ACommunicator.Controllers
             //Save picture on server
             UploadFile(registerChildViewModel);
 
+
+            var aUsername = Request.Cookies.Get(CookieHelper.AUserCookie)?.Value;
+            var aUser = UserHelper.GetAUserByUsername(aUsername);
+
             // Save created EndUser to DB
-            var newEndUser = UserHelper.AddEndUser(new EndUser()
+            var newEndUser = new EndUser()
             {
                 Username = registerChildViewModel.Username,
                 Name = string.IsNullOrEmpty(registerChildViewModel.Name)
-                            ? registerChildViewModel.Username
-                            : registerChildViewModel.Name,
-                PicturePath = registerChildViewModel.Picture.FileName
-            });
+                    ? registerChildViewModel.Username
+                    : registerChildViewModel.Name,
+                PicturePath = registerChildViewModel.Picture.FileName,
+                AUsers = new List<AUser>()
+            };
 
+            newEndUser.AUsers.Add(aUser);
+            newEndUser = UserHelper.AddEndUser(newEndUser);
+            
             // Add endUser cookie for newly created End User
             CookieHelper.AddCookie(CookieHelper.EndUserCookie, newEndUser.Id.ToString(), Response);
 
@@ -178,32 +187,6 @@ namespace ACommunicator.Controllers
             {
                 log.Error(e.Message, e);
             }
-        }
-
-        private string SaveProfilePicture(RegisterChildViewModel registerChildViewModel)
-        {
-            var picturePath = "";
-            var file = registerChildViewModel.Picture;
-
-            if (file == null || file.ContentLength <= 0) return picturePath;
-
-            var fileExtension = file.FileName.GetFileExtension();
-            if (!string.IsNullOrEmpty(fileExtension))
-            {
-                var aUsername = Request.Cookies.Get(CookieHelper.AUserCookie)?.Value;
-
-                // FileName pattern : a_<AdminUsername>_end_<EndUsername>_<DateTimeNow>.<fileExtension>
-                // Example: a_admin_end_childusername_20170622133700.jpeg
-                var fileName = string.Format(AppSettings.EndUserProfilePictureNamePattern,
-                    aUsername,
-                    registerChildViewModel.Username,
-                    System.DateTime.Now,
-                    fileExtension);
-
-                registerChildViewModel.Picture.SaveAs(Path.Combine(AppSettings.EndUserProfilePictureDirectory, fileName));
-            }
-            picturePath = registerChildViewModel.Picture.FileName;
-            return picturePath;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System.Collections.Generic;
+using System.Web;
 using System.Web.Mvc;
 using ACommunicator.Helpers;
 using ACommunicator.Models;
@@ -91,7 +92,8 @@ namespace ACommunicator.Controllers
             {
                 Username = registerViewModel.Username,
                 Password = registerViewModel.Password,
-                Email = registerViewModel.Email
+                Email = registerViewModel.Email,
+                EndUsers = new List<EndUser>()
             };
 
             UserHelper.AddAUser(aUser);
