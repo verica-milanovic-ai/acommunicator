@@ -169,3 +169,23 @@ body {
 .input-validation-error {
     border-color: $error-color-lighter;
 }
+
+/*
+    Images
+*/
+.img-md {
+    max-height: $logo-height;
+    background-size: contain;
+}
+
+a.img-md {
+    height: $logo-height;
+    width: $logo-height;
+    max-width: $logo-height;
+    background-size: contain;
+}
+
+a.option-with-img {
+    margin: 10px;
+    text-align: center;
+}

@@ -160,6 +160,15 @@ namespace ACommunicator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Prijavi dete.
+        /// </summary>
+        public static string LogInChild {
+            get {
+                return ResourceManager.GetString("LogInChild", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Odjavi se.
         /// </summary>
         public static string Logout {

@@ -1,13 +1,13 @@
 ﻿@model ACommunicator.Models.IndexViewModel
 
-
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
-
-<h3>Num of children: @Model.EndUserList.Count</h3>
+<div class="row">
+    @foreach (var child in Model.EndUserList)
+    {
+        <a href="@Url.Action("EndUserIdex", "User", new {endUserId = child.Id})" class="option-with-img img-md col-sm-4 col-xs-6">
+            <img src="@Url.Content(child.PicturePath)" class="img-circle img-responsive img-md" runat="server" style="background: url(@Url.Content(child.PicturePath)); background-size: contain;" />
+            <h4>@child.Name</h4>
+        </a>
+    }
+</div>
 
 @Html.ActionLink(ACommunicator.Properties.Resources.RegisterChild, "RegisterChild", "User", null)
-

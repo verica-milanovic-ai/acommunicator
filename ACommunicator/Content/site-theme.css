@@ -137,3 +137,20 @@ body {
 .input-validation-error {
   border-color: #ee8585; }
 
+/*
+    Images
+*/
+.img-md {
+  max-height: 100px;
+  background-size: contain; }
+
+a.img-md {
+  height: 100px;
+  width: 100px;
+  max-width: 100px;
+  background-size: contain; }
+
+a.option-with-img {
+  margin: 10px;
+  text-align: center; }
+

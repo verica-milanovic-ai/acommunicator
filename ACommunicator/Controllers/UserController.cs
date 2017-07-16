@@ -63,8 +63,8 @@ namespace ACommunicator.Controllers
             }
 
             //Save picture on server
-            UploadFile(registerChildViewModel);
-
+            var filePath = UploadFile(registerChildViewModel);
+        
             var aUsername = Request.Cookies.Get(CookieHelper.AUserCookie)?.Value;
             var aUser = UserHelper.GetAUserByUsername(aUsername);
 
@@ -75,9 +75,7 @@ namespace ACommunicator.Controllers
                 Name = string.IsNullOrEmpty(registerChildViewModel.Name)
                     ? registerChildViewModel.Username
                     : registerChildViewModel.Name,
-                PicturePath = registerChildViewModel.Picture != null ?
-                registerChildViewModel.Picture.FileName
-                : AppSettings.DefaultProfilePictureFileName,
+                PicturePath = filePath,
                 AUsers = new List<AUser>()
             };
 
@@ -124,10 +122,17 @@ namespace ACommunicator.Controllers
         }
 
         [HttpGet]
-        public ActionResult EndUserIdex()
+        public ActionResult EndUserIdex(string endUserId)
         {
-            var endUserCookie = Request.Cookies.Get(CookieHelper.EndUserCookie);
-            var endUserId = endUserCookie?.Value;
+            if (!string.IsNullOrEmpty(endUserId))
+            {
+                CookieHelper.AddCookie(CookieHelper.EndUserCookie, endUserId, Response);
+            }
+            else
+            {
+                var endUserCookie = Request.Cookies.Get(CookieHelper.EndUserCookie);
+                endUserId = endUserCookie?.Value;
+            }
 
             if (string.IsNullOrEmpty(endUserId))
             {
@@ -136,7 +141,7 @@ namespace ACommunicator.Controllers
 
             // TODO: fetch starting point options to display
 
-            return View();
+            return View(new EndUserIndexViewModel { EndUser = UserHelper.GetEndUserById(int.Parse(endUserId)) });
         }
 
         public ActionResult Logout()
@@ -159,7 +164,7 @@ namespace ACommunicator.Controllers
             return View();
         }
 
-        private void UploadFile(RegisterChildViewModel registerChildViewModel)
+        private string UploadFile(RegisterChildViewModel registerChildViewModel)
         {
 
             try
@@ -180,6 +185,8 @@ namespace ACommunicator.Controllers
                         fileExtension);
 
                     registerChildViewModel.Picture.SaveAs(Path.Combine(Server.MapPath(AppSettings.EndUserProfilePictureDirectory), fileName));
+
+                    return Path.Combine(AppSettings.EndUserProfilePictureDirectory, fileName);
                 }
 
             }
@@ -187,6 +194,7 @@ namespace ACommunicator.Controllers
             {
                 log.Error(e.Message, e);
             }
+            return AppSettings.DefaultProfilePictureFileName;
         }
     }
 }

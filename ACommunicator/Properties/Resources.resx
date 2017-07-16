@@ -231,4 +231,7 @@ Molimo Vas da izaberete drugo korisničko ime. </value>
   <data name="InvalidFileType" xml:space="preserve">
     <value>Neispravan tip datoteke. Podrzani su samo sledeci tipovi: {0}.</value>
   </data>
+  <data name="LogInChild" xml:space="preserve">
+    <value>Prijavi dete</value>
+  </data>
 </root>
