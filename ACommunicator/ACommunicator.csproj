@@ -151,7 +151,6 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="profile_pictures\default.jpg" />
     <Content Include="Scripts\app\app-scripts.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -261,6 +260,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="profile_pictures\" />
     <Folder Include="Views\Error\" />
   </ItemGroup>
   <ItemGroup>
