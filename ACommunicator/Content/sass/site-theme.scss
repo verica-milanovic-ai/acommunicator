@@ -27,6 +27,7 @@ body {
 
     .title {
         color: $primary-color-darker;
+        margin-right:10px;
     }
 
     .navbar-header.navbar-bottom {
@@ -38,6 +39,18 @@ body {
         img {
             max-height: $logo-height;
         }
+    }
+
+    .nav > li > a:focus, .nav > li > a:hover {
+        background-color: $secondary-color-lightest;
+        color: $secondary-color;
+        text-decoration: underline;
+        border-radius: 25px 25px 0px 0px;
+    }
+
+    ul.dropdown-menu {
+        margin-right:10px;
+
     }
 }
 

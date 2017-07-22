@@ -97,6 +97,24 @@ namespace ACommunicator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Izmeni svoj profil.
+        /// </summary>
+        public static string EditAUser {
+            get {
+                return ResourceManager.GetString("EditAUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Izmeni profil deteta.
+        /// </summary>
+        public static string EditEndUser {
+            get {
+                return ResourceManager.GetString("EditEndUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email adresa.
         /// </summary>
         public static string Email {
@@ -355,6 +373,15 @@ namespace ACommunicator.Properties {
         public static string UsernameExample {
             get {
                 return ResourceManager.GetString("UsernameExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pogledaj analitiku.
+        /// </summary>
+        public static string ViewAnalytics {
+            get {
+                return ResourceManager.GetString("ViewAnalytics", resourceCulture);
             }
         }
         

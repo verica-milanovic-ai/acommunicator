@@ -234,4 +234,13 @@ Molimo Vas da izaberete drugo korisničko ime. </value>
   <data name="LogInChild" xml:space="preserve">
     <value>Prijavi dete</value>
   </data>
+  <data name="EditAUser" xml:space="preserve">
+    <value>Izmeni svoj profil</value>
+  </data>
+  <data name="EditEndUser" xml:space="preserve">
+    <value>Izmeni profil deteta</value>
+  </data>
+  <data name="ViewAnalytics" xml:space="preserve">
+    <value>Pogledaj analitiku</value>
+  </data>
 </root>

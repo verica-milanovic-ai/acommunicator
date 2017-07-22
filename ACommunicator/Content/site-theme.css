@@ -18,12 +18,20 @@ body {
   background-color: #b6daf2;
   border-color: #b6daf2; }
   .primary-navbar .title {
-    color: #124364; }
+    color: #124364;
+    margin-right: 10px; }
   .primary-navbar .navbar-header.navbar-bottom {
     position: relative;
     top: 50px; }
   .primary-navbar .navbar-header img {
     max-height: 100px; }
+  .primary-navbar .nav > li > a:focus, .primary-navbar .nav > li > a:hover {
+    background-color: #c2bcdc;
+    color: #5b4f97;
+    text-decoration: underline;
+    border-radius: 25px 25px 0px 0px; }
+  .primary-navbar ul.dropdown-menu {
+    margin-right: 10px; }
 
 /*
     Carousel

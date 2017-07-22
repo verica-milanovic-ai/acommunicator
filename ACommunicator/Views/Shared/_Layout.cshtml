@@ -17,24 +17,37 @@
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
-    <div class="primary-navbar navbar navbar-inverse navbar-fixed-top">
+    <div class="primary-navbar navbar navbar-fixed-top">
         <div class="container">
             <div class="navbar-header navbar-left">
                 <img src="~/Content/imgs/logo.png" />
             </div>
             <div class="navbar-header navbar-right navbar-bottom">
-                @if (string.IsNullOrEmpty(endUserCookie) && !string.IsNullOrEmpty(aUserCookie))
-                {
-                    @Html.ActionLink(ACommunicator.Properties.Resources.ACommunicator, "Index", "Home", null, new { @class = "navbar-brand title" })
-                    @Html.ActionLink(ACommunicator.Properties.Resources.MetaCommunicator, "Index", "Home", null, new { @class = "navbar-brand title" })
-                }
-                @(string.IsNullOrEmpty(aUserCookie)
+                <ul class="nav navbar-nav">
+
+                    @if (string.IsNullOrEmpty(endUserCookie) && !string.IsNullOrEmpty(aUserCookie))
+                    {
+                        <li> @Html.ActionLink(ACommunicator.Properties.Resources.ACommunicator, "Index", "Home", null, new { @class = "navbar-brand title" })</li>
+                        <li class="js-dropdown">
+                            @Html.ActionLink(ACommunicator.Properties.Resources.MetaCommunicator, "Index", "MetaCommunicator", null, new { @class = "navbar-brand title" })
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink(ACommunicator.Properties.Resources.EditAUser, "EditAUserProfile", "User", null, null)</li>
+                                <li>@Html.ActionLink(ACommunicator.Properties.Resources.EditEndUser, "EditEndUserProfile", "User", null, null)</li>
+                                <li role="separator" class="divider"></li>
+                                <li>@Html.ActionLink(ACommunicator.Properties.Resources.ViewAnalytics, "ViewAnalytics", "User", null, null)</li>
+                                <li role="separator" class="divider"></li>
+                                <li>@Html.ActionLink(ACommunicator.Properties.Resources.RegisterChild, "RegisterChild", "User", null, null)</li>
+                            </ul>
+                        </li>
+                    }
+                    @(string.IsNullOrEmpty(aUserCookie)
                       ? Html.ActionLink(ACommunicator.Properties.Resources.LogIn, "Login", "Home", null, new { @class = "navbar-brand title" })
                       : Html.ActionLink(ACommunicator.Properties.Resources.Logout, "Logout", "User", null, new { @class = "navbar-brand title" }))
-                @if (!string.IsNullOrEmpty(endUserCookie))
-                {
-                    @Html.ActionLink(ACommunicator.Properties.Resources.LogoutChild, "LogoutChild", "User", null, new { @class = "navbar-brand title" })
-                }
+                    @if (!string.IsNullOrEmpty(endUserCookie))
+                    {
+                        @Html.ActionLink(ACommunicator.Properties.Resources.LogoutChild, "LogoutChild", "User", null, new { @class = "navbar-brand title" })
+                    }
+                </ul>
             </div>
         </div>
     </div>

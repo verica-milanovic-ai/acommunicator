@@ -6,6 +6,11 @@ $primary-color: #3498DB;
 $primary-color-lighter: lighten($primary-color, 30%);
 $primary-color-darker: darken($primary-color, 30%);
 
+$secondary-color: #5b4f97;
+$secondary-color-lighter: lighten($secondary-color, 30%);
+$secondary-color-lightest: lighten($secondary-color, 35%);
+$secondary-color-darker: darken($secondary-color, 30%);
+
 $error-color: #bf1b1b;
 $error-color-lighter: lighten($error-color, 30%);
 $error-color-darker: darken($error-color, 30%);
