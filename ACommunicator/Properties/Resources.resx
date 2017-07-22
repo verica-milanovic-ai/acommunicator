@@ -240,6 +240,9 @@ Molimo Vas da izaberete drugo korisničko ime. </value>
   <data name="EditEndUser" xml:space="preserve">
     <value>Izmeni profil deteta</value>
   </data>
+  <data name="MetaCommunicatorModeInfoMessage" xml:space="preserve">
+    <value>Trenutno ste u MetaKomunikatoru. Odaberite profil deteta koji zelite da izmenite ili detaljnije pogledate.</value>
+  </data>
   <data name="ViewAnalytics" xml:space="preserve">
     <value>Pogledaj analitiku</value>
   </data>

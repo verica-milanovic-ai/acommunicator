@@ -31,7 +31,7 @@
                             @Html.ActionLink(ACommunicator.Properties.Resources.MetaCommunicator, "Index", "MetaCommunicator", null, new { @class = "navbar-brand title" })
                             <ul class="dropdown-menu">
                                 <li>@Html.ActionLink(ACommunicator.Properties.Resources.EditAUser, "EditAUserProfile", "User", null, null)</li>
-                                <li>@Html.ActionLink(ACommunicator.Properties.Resources.EditEndUser, "EditEndUserProfile", "User", null, null)</li>
+                                <li>@Html.ActionLink(ACommunicator.Properties.Resources.EditEndUser, "Index", "MetaCommunicator", null, null)</li>
                                 <li role="separator" class="divider"></li>
                                 <li>@Html.ActionLink(ACommunicator.Properties.Resources.ViewAnalytics, "ViewAnalytics", "User", null, null)</li>
                                 <li role="separator" class="divider"></li>
@@ -53,6 +53,8 @@
 
     <div class="container body-content">
         @RenderBody()
+        <br />
+        <br />
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - @ACommunicator.Properties.Resources.ACommunicator</p>

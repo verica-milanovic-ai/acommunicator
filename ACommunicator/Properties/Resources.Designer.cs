@@ -214,6 +214,15 @@ namespace ACommunicator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Trenutno ste u MetaKomunikatoru. Odaberite profil deteta koji zelite da izmenite ili detaljnije pogledate..
+        /// </summary>
+        public static string MetaCommunicatorModeInfoMessage {
+            get {
+                return ResourceManager.GetString("MetaCommunicatorModeInfoMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ime.
         /// </summary>
         public static string Name {

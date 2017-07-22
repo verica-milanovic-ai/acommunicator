@@ -89,17 +89,16 @@ namespace ACommunicator.Controllers
         }
 
         [HttpGet]
-        public ActionResult EditEndUserProfile()
+        public ActionResult EditEndUserProfile(string endUserId)
         {
-            var endUserIdString = Request.Cookies.Get(CookieHelper.EndUserCookie)?.Value;
-            if (string.IsNullOrEmpty(endUserIdString))
+            if (string.IsNullOrEmpty(endUserId))
             {
                 return RedirectToAction("SomethingWentWrong", "Error");
             }
 
-            var endUserId = -1;
-            int.TryParse(endUserIdString, out endUserId);
-            var endUser = UserHelper.GetEndUserById(endUserId);
+            var endUserIdInt = -1;
+            int.TryParse(endUserId, out endUserIdInt);
+            var endUser = UserHelper.GetEndUserById(endUserIdInt);
 
             if (endUser == null)
             {
