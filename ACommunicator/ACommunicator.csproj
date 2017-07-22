@@ -122,7 +122,6 @@
     <Content Include="Content\site-theme.min.css">
       <DependentUpon>site-theme.css</DependentUpon>
     </Content>
-    <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="ACommunicator.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
