@@ -70,9 +70,12 @@ namespace ACommunicator.Helpers
             if (string.IsNullOrEmpty(aUser.PicturePath)) { aUser.PicturePath = DefaultPicutrePath; }
             
 
-            var original = DbContext.AUsers.Find(aUser.Id);
+            var original = DbContext.AUsers.FirstOrDefault(u => u.Username.Trim().Equals(aUser.Username));
 
             if (original == null) return false;
+
+            aUser.Id = original.Id;
+            aUser.Password = aUser.Password ?? original.Password;
 
             DbContext.Entry(original).CurrentValues.SetValues(aUser);
             DbContext.SaveChanges();

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Web.Mvc;
 using ACommunicator.Helpers;
+using ACommunicator.Helpers.Google;
 using ACommunicator.Models;
+using ACommunicator.Properties;
 
 namespace ACommunicator.Controllers
 {
@@ -48,6 +50,72 @@ namespace ACommunicator.Controllers
         }
 
         [HttpGet]
+        public ActionResult EditAUserProfile()
+        {
+            var aUserCookie = Request.Cookies.Get(CookieHelper.AUserCookie);
+            var username = aUserCookie?.Value;
+
+            // If aUserCookie is empty, go back to login screen.
+            if (string.IsNullOrEmpty(username))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            var aUser = UserHelper.GetAUserByUsername(username);
+            if (aUser != null)
+            {
+                aUser.Password = aUser.Password?.Trim() ?? string.Empty;
+                aUser.Name = aUser.Name?.Trim() ?? string.Empty;
+                aUser.Username = aUser.Username?.Trim() ?? string.Empty;
+                aUser.Telephone = aUser.Telephone?.Trim() ?? string.Empty;
+                aUser.Email = aUser.Email?.Trim() ?? string.Empty;
+
+                return View(new EditAUserProfileViewModel
+                {
+                    AUser = aUser
+                });
+            }
+            return RedirectToAction("SomethingWentWrong", "Error");
+        }
+
+        [HttpPost]
+        public ActionResult EditAUserProfile(EditAUserProfileViewModel viewModel, string action)
+        {
+            if (!ModelState.IsValid)
+            {
+                viewModel.NewPassword = "";
+                viewModel.ConfirmPassword = "";
+                return View(viewModel);
+            }
+
+            if (action.Equals(Resources.Cancel))
+            {
+                return RedirectToAction("Index", "User");
+            }
+
+            if ((!string.IsNullOrEmpty(viewModel.NewPassword) &&
+                 !viewModel.NewPassword.Equals(viewModel.ConfirmPassword))
+                ||
+                (!string.IsNullOrEmpty(viewModel.ConfirmPassword) &&
+                 !viewModel.ConfirmPassword.Equals(viewModel.NewPassword)))
+            {
+                ModelState.AddModelError("ConfirmPassword", Resources.ConfirmPasswordMustMatchPassword);
+                viewModel.NewPassword = "";
+                viewModel.ConfirmPassword = "";
+                return View(viewModel);
+            }
+
+            if (!string.IsNullOrEmpty(viewModel.NewPassword))
+            {
+                viewModel.AUser.Password = viewModel.NewPassword;
+            }
+
+            UserHelper.UpdateAUser(viewModel.AUser);
+
+            return View(viewModel);
+        }
+
+        [HttpGet]
         public ActionResult RegisterChild()
         {
             return View(new RegisterChildViewModel());
@@ -64,7 +132,7 @@ namespace ACommunicator.Controllers
 
             //Save picture on server
             var filePath = UploadFile(registerChildViewModel);
-        
+
             var aUsername = Request.Cookies.Get(CookieHelper.AUserCookie)?.Value;
             var aUser = UserHelper.GetAUserByUsername(aUsername);
 
@@ -93,7 +161,11 @@ namespace ACommunicator.Controllers
         {
             if (string.IsNullOrEmpty(endUserId))
             {
-                return RedirectToAction("SomethingWentWrong", "Error");
+                endUserId = Request.Cookies.Get(CookieHelper.EndUserCookie)?.Value;
+                if (string.IsNullOrEmpty(endUserId))
+                {
+                    return RedirectToAction("SomethingWentWrong", "Error");
+                }
             }
 
             var endUserIdInt = -1;
@@ -163,7 +235,7 @@ namespace ACommunicator.Controllers
             return View();
         }
 
-        private string UploadFile(RegisterChildViewModel registerChildViewModel)
+        private string UploadFileLocally(RegisterChildViewModel registerChildViewModel)
         {
 
             try
@@ -195,5 +267,48 @@ namespace ACommunicator.Controllers
             }
             return AppSettings.DefaultProfilePictureFileName;
         }
+
+        private string UploadFile(RegisterChildViewModel registerChildViewModel)
+        {
+
+            try
+            {
+                var file = registerChildViewModel.Picture;
+                var fileExtension = file?.FileName.GetFileExtension();
+
+                if (!string.IsNullOrEmpty(fileExtension) && file.ContentLength > 0)
+                {
+                    var aUsername = Request.Cookies.Get(CookieHelper.AUserCookie)?.Value;
+
+                    // FileName pattern : a_<AdminUsername>_end_<EndUsername>_<DateTimeNow>.<fileExtension>
+                    // Example: a_admin_end_childusername_20170622133700.jpeg
+                    var fileName = string.Format(AppSettings.EndUserProfilePictureNamePattern,
+                        aUsername,
+                        registerChildViewModel.Username,
+                        DateTime.Now.ToString("yyyyMMddHHmmss"),
+                        fileExtension);
+
+                    var filePath = Path.Combine(Server.MapPath(AppSettings.EndUserProfilePictureDirectory), fileName);
+
+                    registerChildViewModel.Picture.SaveAs(filePath);
+
+                    var uploadedFile = DriveHelper.UploadFile(filePath, AppSettings.ACommunicatorPhotosDriveFolderId);
+
+                    if (uploadedFile != null)
+                    {
+                        System.IO.File.Delete(filePath);
+                    }
+
+                    return (uploadedFile?.ThumbnailLink) ?? AppSettings.DefaultProfilePictureFileName;
+                }
+
+            }
+            catch (Exception e)
+            {
+                log.Error(e.Message, e);
+            }
+            return AppSettings.DefaultProfilePictureFileName;
+        }
+
     }
 }

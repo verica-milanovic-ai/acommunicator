@@ -79,6 +79,15 @@ namespace ACommunicator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Odustani.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Potvrda lozinke.
         /// </summary>
         public static string ConfirmPassword {
@@ -331,6 +340,15 @@ namespace ACommunicator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Zapamti.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to acommunicator17@gmail.com.
         /// </summary>
         public static string SenderEmailAddress {
@@ -345,6 +363,15 @@ namespace ACommunicator.Properties {
         public static string SomethingWentWrongMessage {
             get {
                 return ResourceManager.GetString("SomethingWentWrongMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;011/356-77-00&apos;.
+        /// </summary>
+        public static string TelephoneExample {
+            get {
+                return ResourceManager.GetString("TelephoneExample", resourceCulture);
             }
         }
         

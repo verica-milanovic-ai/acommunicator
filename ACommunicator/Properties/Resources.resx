@@ -246,4 +246,13 @@ Molimo Vas da izaberete drugo korisničko ime. </value>
   <data name="ViewAnalytics" xml:space="preserve">
     <value>Pogledaj analitiku</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Odustani</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Zapamti</value>
+  </data>
+  <data name="TelephoneExample" xml:space="preserve">
+    <value>'011/356-77-00'</value>
+  </data>
 </root>

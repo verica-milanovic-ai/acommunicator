@@ -1,0 +1,8 @@
+﻿@model  List<ACommunicator.Models.OptionViewModel>
+<h2>Options</h2>
+
+@foreach (var option in @Model)
+{
+    @Html.Partial("Option", option)
+    <br/>
+}

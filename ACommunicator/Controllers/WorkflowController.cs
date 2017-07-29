@@ -1,19 +1,22 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using ACommunicator.Helpers.Google;
+using ACommunicator.Models;
 
 namespace ACommunicator.Controllers
 {
     public class WorkflowController : Controller
     {
         [HttpGet]
-        public ActionResult Option()
+        public ActionResult Options(string optionId)
         {
-            return View();
-        }
+            var file = DriveHelper.GetFiles("default").First();
 
-        [HttpPost]
-        public ActionResult Option(object viewModel)
-        {
-            return View();
+            var fileEmbedLink = file.ThumbnailLink;
+
+
+            return View("Options", new List<OptionViewModel> { new OptionViewModel { ImageUrl = fileEmbedLink, Text = "default option", OptionId = "1" } });
         }
     }
 }

@@ -8,11 +8,14 @@ namespace ACommunicator.Helpers
         public static string EndUserProfilePictureDirectory { get; set; }
         public static string DefaultProfilePictureFileName { get; set; }
 
+        public static string ACommunicatorPhotosDriveFolderId { get; set; }
+
         static AppSettings()
         {
             EndUserProfilePictureNamePattern = ConfigurationManager.AppSettings["EndUserProfilePictureNamePattern"] ?? string.Empty;
             EndUserProfilePictureDirectory = ConfigurationManager.AppSettings["EndUserProfilePictureDirectory"] ?? string.Empty;
             DefaultProfilePictureFileName = ConfigurationManager.AppSettings["DefaultProfilePictureFileName"] ?? string.Empty;
+            ACommunicatorPhotosDriveFolderId = ConfigurationManager.AppSettings["ACommunicatorPhotosDriveFolderId"] ?? string.Empty;
         }
     }
 }

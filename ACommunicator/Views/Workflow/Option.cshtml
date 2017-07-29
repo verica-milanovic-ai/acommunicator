@@ -1,2 +1,6 @@
-﻿<h2>Option</h2>
+﻿@model ACommunicator.Models.OptionViewModel
 
+<a href="@Url.Action("Options", "Workflow" , new {optionId=@Model.OptionId})" class="option-with-img img-md col-sm-4 col-xs-6">
+    <img src="@Model.ImageUrl" class="img-circle img-responsive img-md" runat="server"/>
+    <h4>@Model.Text</h4>
+</a>
