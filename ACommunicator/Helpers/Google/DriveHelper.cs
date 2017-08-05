@@ -71,7 +71,7 @@ namespace ACommunicator.Helpers.Google
        {
             var request = DriveService.Files.List();
             request.Q = "'" + AppSettings.ACommunicatorPhotosDriveFolderId + "' in parents";
-            request.MaxResults = 1;
+            
             
             var files = request.Execute();
 
