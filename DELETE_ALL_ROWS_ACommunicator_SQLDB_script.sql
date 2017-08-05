@@ -1,0 +1,5 @@
+DELETE FROM EndUserOption;
+DELETE FROM AUserEndUser;
+DELETE FROM EndUsers;
+DELETE FROM AUsers;
+DELETE FROM Options;
