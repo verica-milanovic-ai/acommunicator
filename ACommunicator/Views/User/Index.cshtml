@@ -1,5 +1,10 @@
-﻿@using ACommunicator.Models
+﻿@using ACommunicator.Helpers
+@using ACommunicator.Models
 @model IndexViewModel
+
+@{
+    var auser = Request.Cookies.Get(CookieHelper.AUserCookie)?.Value;
+}
 
 <div class="row">
     @foreach (var child in Model.EndUserList)
@@ -22,3 +27,6 @@
         @Html.Partial("EndUserItem", viewModel)
     }
 </div>
+<script>
+    ga('send', 'event', "AUserIndex", "@auser", "admin user", 10);
+</script>
