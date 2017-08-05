@@ -38,7 +38,7 @@ namespace ACommunicator.Controllers
             }
 
             // If endUserCookie isn't empty, go to index screen for endUser
-            return RedirectToAction("EndUserIdex");
+            return RedirectToAction("EndUserIndex");
         }
 
         [HttpPost]
@@ -46,7 +46,7 @@ namespace ACommunicator.Controllers
         {
             CookieHelper.AddCookie(CookieHelper.EndUserCookie, indexViewModel.SelectedEndUserId.ToString(), Response);
 
-            return RedirectToAction("EndUserIdex");
+            return RedirectToAction("EndUserIndex");
         }
 
         [HttpGet]
@@ -193,7 +193,7 @@ namespace ACommunicator.Controllers
         }
 
         [HttpGet]
-        public ActionResult EndUserIdex(string endUserId)
+        public ActionResult EndUserIndex(string endUserId)
         {
             if (!string.IsNullOrEmpty(endUserId))
             {
@@ -299,7 +299,7 @@ namespace ACommunicator.Controllers
                         System.IO.File.Delete(filePath);
                     }
 
-                    return (uploadedFile?.ThumbnailLink) ?? AppSettings.DefaultProfilePictureFileName;
+                    return (uploadedFile?.Title) ?? AppSettings.DefaultProfilePictureFileName;
                 }
 
             }

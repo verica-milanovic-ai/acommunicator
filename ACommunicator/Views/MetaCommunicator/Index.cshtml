@@ -1,6 +1,7 @@
-﻿@using ACommunicator.Properties
-@model ACommunicator.Models.IndexViewModel
-<br/>
+﻿@using ACommunicator.Models
+@using ACommunicator.Properties
+@model IndexViewModel
+<br />
 <div class="row">
     <div class="col-lg-12">
         <div class="alert alert-info" role="alert">@Resources.MetaCommunicatorModeInfoMessage</div>
@@ -10,9 +11,21 @@
 <div class="row">
     @foreach (var child in Model.EndUserList)
     {
-    <a href="@Url.Action("EditEndUserProfile", "User" , new {endUserId=child.Id})" class="option-with-img img-md col-sm-4 col-xs-6">
-        <img src="@Url.Content(child.PicturePath)" class="img-circle img-responsive img-md" runat="server" style="background: url(@Url.Content(child.PicturePath)); background-size: contain;" />
-        <h4>@child.Name</h4>
-    </a>
+        @*<a href="@Url.Action("EditEndUserProfile", "User" , new {endUserId=child.Id})" class="option-with-img img-md col-sm-4 col-xs-6">
+                <img src="@Url.Content(child.PicturePath)" class="img-circle img-responsive img-md" runat="server" style="background: url(@Url.Content(child.PicturePath)); background-size: contain;" />
+                <h4>@child.Name</h4>
+            </a>*@
+        var viewModel = new EndUserItemViewModel
+        {
+            PicturePath = child.PicturePath,
+            Username = child.Username,
+            Name = child.Name,
+            AUsers = child.AUsers,
+            Id = child.Id,
+            Options = child.Options,
+            Action = "EditEndUserProfile",
+            Controller = "User"
+        };
+        @Html.Partial("../User/EndUserItem", viewModel)
     }
 </div>

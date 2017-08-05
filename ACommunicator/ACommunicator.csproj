@@ -259,6 +259,7 @@
     <Compile Include="Models\EditAUserProfileViewModel.cs" />
     <Compile Include="Models\EditEndUserViewModel.cs" />
     <Compile Include="Models\EndUserIndexViewModel.cs" />
+    <Compile Include="Models\EndUserItemViewModel.cs" />
     <Compile Include="Models\IndexViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\OptionViewModel.cs" />
@@ -302,9 +303,10 @@
     <Content Include="Views\User\AccountCreated.cshtml" />
     <Content Include="Views\User\EditEndUserProfile.cshtml" />
     <Content Include="Views\User\RegisterChild.cshtml" />
-    <Content Include="Views\User\EndUserIdex.cshtml" />
+    <Content Include="Views\User\EndUserIndex.cshtml" />
     <Content Include="Views\User\EditAUserProfile.cshtml" />
     <Content Include="Views\Workflow\Options.cshtml" />
+    <Content Include="Views\User\EndUserItem.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
