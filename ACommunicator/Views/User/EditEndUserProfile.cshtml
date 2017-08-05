@@ -1,7 +1,43 @@
-﻿
-@{
-    ViewBag.Title = "EditEndUserProfile";
-}
+﻿@using ACommunicator.Properties
+@model ACommunicator.Models.EditEndUserViewModel
+<br />
 
-<h2>EditEndUserProfile</h2>
 
+<form class="edit-form" action="/User/EditEndUserProfile" method="post" role="form" enctype="multipart/form-data">
+    @Html.HiddenFor(x => x.EndUser.PicturePath)
+
+    <div class="form-group row">
+        <div class="col-sm-offset-3 col-sm-6">
+            @Html.LabelFor(x => x.EndUser.Username)
+            @Html.TextBoxFor(x => x.EndUser.Username, new { @tabindex = "1", @placeholder = Resources.UsernameExample, @class = "form-control", @readonly = "readonly" })
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-offset-3 col-sm-6">
+            @Html.LabelFor(x => x.EndUser.Name)
+            @Html.TextBoxFor(x => x.EndUser.Name, new { @tabindex = "2", @placeholder = Resources.NameExample, @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.EndUser.Name)
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-offset-3 col-sm-6">
+            @Html.LabelFor(x => x.NewPicture)
+            <div class="form-control upload-file-control">
+                @Html.TextBoxFor(x => x.NewPicture, new { type = "file", @tabindex = "3" })
+            </div>
+            @Html.ValidationMessageFor(x => x.NewPicture)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="form-group">
+                    <input type="submit" name="action" id="register-submit" tabindex="4" class="form-control btn btn-register" value="@Resources.Save">
+                </div>
+                <div class="form-group">
+                    <input type="submit" name="action" id="register-cancel" tabindex="5" class="form-control btn btn-cancel" value="@Resources.Cancel">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

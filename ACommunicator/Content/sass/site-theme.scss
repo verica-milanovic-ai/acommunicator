@@ -84,7 +84,7 @@ body {
     Login and Register Form
 */
 
-.login-form, .register-form {
+.login-form, .register-form, .edit-form {
     .btn-login,
     .btn-register {
         background-color: $primary-color;
@@ -98,6 +98,18 @@ body {
         border-color: $primary-color-lighter;
     }
 
+    .btn-cancel {
+        background-color: $secondary-color-lightest;
+        outline: none;
+        color: #fff;
+        font-size: 12px;
+        height: auto;
+        font-weight: normal;
+        padding: 12px 0;
+        text-transform: uppercase;
+        border-color: $secondary-color-lightest;
+    }
+
     .btn-login:hover,
     .btn-login:focus,
     .btn-register:hover,
@@ -105,6 +117,13 @@ body {
         color: #fff;
         background-color: $primary-color-darker;
         border-color: $primary-color;
+    }
+
+    .btn-cancel:hover,
+    .btn-cancel:focus{
+        color: #fff;
+        background-color: $secondary-color;
+        border-color: $secondary-color-lighter;
     }
 
     .panel-login {

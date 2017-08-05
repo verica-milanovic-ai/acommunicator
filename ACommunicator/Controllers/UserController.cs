@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Web;
 using System.Web.Mvc;
 using ACommunicator.Helpers;
 using ACommunicator.Helpers.Google;
 using ACommunicator.Models;
 using ACommunicator.Properties;
+using Google.Apis.Drive.v2.Data;
 
 namespace ACommunicator.Controllers
 {
@@ -170,6 +172,9 @@ namespace ACommunicator.Controllers
 
             var endUserIdInt = -1;
             int.TryParse(endUserId, out endUserIdInt);
+
+            Response.Cookies.Add(new HttpCookie(CookieHelper.EndUserCookie, endUserId));
+
             var endUser = UserHelper.GetEndUserById(endUserIdInt);
 
             if (endUser == null)
@@ -179,17 +184,56 @@ namespace ACommunicator.Controllers
             return View(new EditEndUserViewModel
             {
                 EndUser = endUser,
-                IsSuccessfullySaved = null
+                IsSuccessfullySaved = null,
+                NewPicture = null
             });
         }
 
         [HttpPost]
-        public ActionResult EditEndUserProfile(EditEndUserViewModel editEndUserViewModel)
+        public ActionResult EditEndUserProfile(EditEndUserViewModel editEndUserViewModel, string action)
         {
+            if (action.Equals(Resources.Cancel))
+            {
+                CookieHelper.RemoveCookie(CookieHelper.EndUserCookie, Response);
+                return RedirectToAction("Index", "MetaCommunicator");
+            }
+
             if (!ModelState.IsValid) { return View(editEndUserViewModel); }
 
+            var oldProfPict = editEndUserViewModel.EndUser.PicturePath.Trim();
+
+            if (editEndUserViewModel.NewPicture != null)
+            {
+                //Save picture on server
+                var filePath = UploadFile(new RegisterChildViewModel
+                {
+                    Picture = editEndUserViewModel.NewPicture,
+                    Name = editEndUserViewModel.EndUser.Name.Trim(),
+                    Username = editEndUserViewModel.EndUser.Username.Trim()
+                });
+
+                editEndUserViewModel.EndUser.PicturePath = filePath;
+            }
+
+            var stringEndUserId = Request.Cookies.Get(CookieHelper.EndUserCookie)?.Value;
+
+            int endUserId;
+            int.TryParse(stringEndUserId, out endUserId);
+
+            editEndUserViewModel.EndUser.Id = endUserId;
+
             editEndUserViewModel.IsSuccessfullySaved = UserHelper.UpdateEndUser(editEndUserViewModel.EndUser);
-            return View(editEndUserViewModel);
+
+            if (editEndUserViewModel.IsSuccessfullySaved.Value
+                && !editEndUserViewModel.EndUser.PicturePath.Equals(oldProfPict)
+                && !AppSettings.DefaultProfilePictureFileName.Equals(oldProfPict)
+                && editEndUserViewModel.NewPicture != null)
+            {
+                DriveHelper.DeleteFile(oldProfPict);
+            }
+
+            CookieHelper.RemoveCookie(CookieHelper.EndUserCookie, Response);
+            return RedirectToAction("Index", "MetaCommunicator");
         }
 
         [HttpGet]

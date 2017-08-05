@@ -187,6 +187,14 @@ namespace ACommunicator.Helpers.Google
             return null;
         }
 
+        public static void DeleteFile(string fileName)
+        {
+            if (string.IsNullOrEmpty(fileName)) return;
+            var file = GetFiles(fileName).First();
+            var deleteRequest = DriveService.Files.Delete(file.Id);
+            deleteRequest.Execute();
+        }
+
 
         // Tries to figure out the mime type of the file.
         private static string GetMimeType(string fileName)
