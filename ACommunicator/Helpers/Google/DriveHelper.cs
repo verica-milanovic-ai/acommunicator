@@ -27,7 +27,7 @@ namespace ACommunicator.Helpers.Google
             var scopes = new[] { DriveService.Scope.Drive }; // Full access
 
 
-            var keyFilePath = HttpContext.Current.Server.MapPath("..\\ACommunicator-c4d6e0c7cd69.p12"); // Downloaded from https://console.developers.google.com
+            var keyFilePath = HttpContext.Current.Server.MapPath("~\\ACommunicator-c4d6e0c7cd69.p12"); // Downloaded from https://console.developers.google.com
             var serviceAccountEmail = "acommunicator@acommunicator-175210.iam.gserviceaccount.com"; // found https://console.developers.google.com
 
             //loading the Key file
