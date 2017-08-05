@@ -7,7 +7,6 @@ using ACommunicator.Helpers;
 using ACommunicator.Helpers.Google;
 using ACommunicator.Models;
 using ACommunicator.Properties;
-using Google.Apis.Drive.v2.Data;
 
 namespace ACommunicator.Controllers
 {
@@ -279,39 +278,6 @@ namespace ACommunicator.Controllers
             return View();
         }
 
-        private string UploadFileLocally(RegisterChildViewModel registerChildViewModel)
-        {
-
-            try
-            {
-                var file = registerChildViewModel.Picture;
-                var fileExtension = file?.FileName.GetFileExtension();
-
-                if (!string.IsNullOrEmpty(fileExtension) && file.ContentLength > 0)
-                {
-                    var aUsername = Request.Cookies.Get(CookieHelper.AUserCookie)?.Value;
-
-                    // FileName pattern : a_<AdminUsername>_end_<EndUsername>_<DateTimeNow>.<fileExtension>
-                    // Example: a_admin_end_childusername_20170622133700.jpeg
-                    var fileName = string.Format(AppSettings.EndUserProfilePictureNamePattern,
-                        aUsername,
-                        registerChildViewModel.Username,
-                        DateTime.Now.ToString("yyyyMMddHHmmss"),
-                        fileExtension);
-
-                    registerChildViewModel.Picture.SaveAs(Path.Combine(Server.MapPath(AppSettings.EndUserProfilePictureDirectory), fileName));
-
-                    return Path.Combine(AppSettings.EndUserProfilePictureDirectory, fileName);
-                }
-
-            }
-            catch (Exception e)
-            {
-                log.Error(e.Message, e);
-            }
-            return AppSettings.DefaultProfilePictureFileName;
-        }
-
         private string UploadFile(RegisterChildViewModel registerChildViewModel)
         {
 
@@ -344,6 +310,45 @@ namespace ACommunicator.Controllers
                     }
 
                     return (uploadedFile?.Title) ?? AppSettings.DefaultProfilePictureFileName;
+                }
+
+            }
+            catch (Exception e)
+            {
+                log.Error(e.Message, e);
+            }
+            return AppSettings.DefaultProfilePictureFileName;
+        }
+
+        /// <summary>
+        /// Deprecated;
+        /// Uploading files locally - on server.
+        /// </summary>
+        /// <param name="registerChildViewModel"></param>
+        /// <returns></returns>
+        private string UploadFileLocally(RegisterChildViewModel registerChildViewModel)
+        {
+
+            try
+            {
+                var file = registerChildViewModel.Picture;
+                var fileExtension = file?.FileName.GetFileExtension();
+
+                if (!string.IsNullOrEmpty(fileExtension) && file.ContentLength > 0)
+                {
+                    var aUsername = Request.Cookies.Get(CookieHelper.AUserCookie)?.Value;
+
+                    // FileName pattern : a_<AdminUsername>_end_<EndUsername>_<DateTimeNow>.<fileExtension>
+                    // Example: a_admin_end_childusername_20170622133700.jpeg
+                    var fileName = string.Format(AppSettings.EndUserProfilePictureNamePattern,
+                        aUsername,
+                        registerChildViewModel.Username,
+                        DateTime.Now.ToString("yyyyMMddHHmmss"),
+                        fileExtension);
+
+                    registerChildViewModel.Picture.SaveAs(Path.Combine(Server.MapPath(AppSettings.EndUserProfilePictureDirectory), fileName));
+
+                    return Path.Combine(AppSettings.EndUserProfilePictureDirectory, fileName);
                 }
 
             }

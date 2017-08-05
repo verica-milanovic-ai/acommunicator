@@ -1,0 +1,85 @@
+﻿@using ACommunicator.Helpers
+@{
+    var endUserCookie = Request.Cookies.Get(CookieHelper.EndUserCookie)?.Value;
+    var aUserCookie = Request.Cookies.Get(CookieHelper.AUserCookie)?.Value;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AKomunikator</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/site-theme.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-102158873-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+</head>
+<body>
+<div class="primary-navbar navbar">
+    <div class="container">
+        <div class="navbar-header navbar-left">
+            <img src="~/Content/imgs/logo.png" />
+        </div>
+        <div class="navbar-header navbar-right navbar-bottom">
+            <ul class="nav navbar-nav">
+
+                @if (string.IsNullOrEmpty(endUserCookie) && !string.IsNullOrEmpty(aUserCookie))
+                {
+                    <li> @Html.ActionLink(ACommunicator.Properties.Resources.ACommunicator, "Index", "Home", null, new { @class = "navbar-brand title" })</li>
+                    <li class="js-dropdown">
+                        @Html.ActionLink(ACommunicator.Properties.Resources.MetaCommunicator, "Index", "MetaCommunicator", null, new { @class = "navbar-brand title" })
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink(ACommunicator.Properties.Resources.EditAUser, "EditAUserProfile", "User", null, null)</li>
+                            <li>@Html.ActionLink(ACommunicator.Properties.Resources.EditEndUser, "Index", "MetaCommunicator", null, null)</li>
+                            <li role="separator" class="divider"></li>
+                            <li>@Html.ActionLink(ACommunicator.Properties.Resources.ViewAnalytics, "ViewAnalytics", "User", null, null)</li>
+                            <li role="separator" class="divider"></li>
+                            <li>@Html.ActionLink(ACommunicator.Properties.Resources.RegisterChild, "RegisterChild", "User", null, null)</li>
+                        </ul>
+                    </li>
+                }
+                @(string.IsNullOrEmpty(aUserCookie)
+                      ? Html.ActionLink(ACommunicator.Properties.Resources.LogIn, "Login", "Home", null, new { @class = "navbar-brand title" })
+                      : Html.ActionLink(ACommunicator.Properties.Resources.Logout, "Logout", "User", null, new { @class = "navbar-brand title" }))
+                @if (!string.IsNullOrEmpty(endUserCookie))
+                {
+                    @Html.ActionLink(ACommunicator.Properties.Resources.LogoutChild, "LogoutChild", "User", null, new { @class = "navbar-brand title" })
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    <div class="body-content">
+        @RenderBody()
+        <br />
+        <br />
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - @ACommunicator.Properties.Resources.ACommunicator</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+
+    <script src="~/Scripts/app/app-scripts.js"></script>
+
+</body>
+</html>

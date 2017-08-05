@@ -307,6 +307,7 @@
     <Content Include="Views\User\EditAUserProfile.cshtml" />
     <Content Include="Views\Workflow\Options.cshtml" />
     <Content Include="Views\User\EndUserItem.cshtml" />
+    <Content Include="Views\Shared\_CommunicatorLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

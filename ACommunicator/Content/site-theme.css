@@ -16,7 +16,8 @@ body {
 .primary-navbar {
   min-height: 100px;
   background-color: #b6daf2;
-  border-color: #b6daf2; }
+  border-color: #b6daf2;
+  margin-bottom: 0px; }
   .primary-navbar .title {
     color: #124364;
     margin-right: 10px; }
@@ -173,16 +174,33 @@ body {
     Images
 */
 .img-md {
-  max-height: 100px;
-  background-size: contain; }
+  max-height: 100px; }
 
 a.img-md {
-  height: 100px;
-  width: 100px;
-  max-width: 100px;
-  background-size: contain; }
+  height: 100px; }
 
 a.option-with-img {
   margin: 10px;
-  text-align: center; }
+  text-align: left; }
+  a.option-with-img h4 {
+    width: 100px;
+    text-align: center; }
+
+/*
+    Communicator Header
+*/
+.communicator-header {
+  background-color: #000;
+  color: #fff;
+  height: 150px;
+  width: 100%;
+  position: absolute; }
+  .communicator-header a.img-md {
+    margin: 25px;
+    min-width: 120px; }
+    .communicator-header a.img-md img {
+      min-height: 100px;
+      min-width: 100px; }
+  .communicator-header a.option-with-img h4 {
+    display: none; }
 

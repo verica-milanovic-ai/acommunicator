@@ -1,4 +1,26 @@
-﻿@model ACommunicator.Models.EndUserIndexViewModel
+﻿@using ACommunicator.Models
+@model EndUserIndexViewModel
 
-<h3>@Model.EndUser.Name</h3>
+@{
+    Layout = "~/Views/Shared/_CommunicatorLayout.cshtml";
+}
 
+    <div class="communicator-header">
+        @Html.Partial("EndUserItem", new EndUserItemViewModel
+        {
+            PicturePath = Model.EndUser.PicturePath,
+            Username = Model.EndUser.Username,
+            Name = "",
+            AUsers = Model.EndUser.AUsers,
+            Id = Model.EndUser.Id,
+            Options = Model.EndUser.Options,
+            Action = "EditEndUserProfile",
+            Controller = "User"
+        })
+
+        @* 
+            TODO: add options for user    
+        *@
+    </div>
+
+    @* TODO: add sub-options for selected option *@

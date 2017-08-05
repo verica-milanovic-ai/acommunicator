@@ -24,10 +24,10 @@ body {
     min-height: $logo-height;
     background-color: $primary-color-lighter;
     border-color: $primary-color-lighter;
-
+    margin-bottom: 0px;
     .title {
         color: $primary-color-darker;
-        margin-right:10px;
+        margin-right: 10px;
     }
 
     .navbar-header.navbar-bottom {
@@ -49,8 +49,7 @@ body {
     }
 
     ul.dropdown-menu {
-        margin-right:10px;
-
+        margin-right: 10px;
     }
 }
 
@@ -120,7 +119,7 @@ body {
     }
 
     .btn-cancel:hover,
-    .btn-cancel:focus{
+    .btn-cancel:focus {
         color: #fff;
         background-color: $secondary-color;
         border-color: $secondary-color-lighter;
@@ -207,17 +206,44 @@ body {
 */
 .img-md {
     max-height: $logo-height;
-    background-size: contain;
 }
 
 a.img-md {
     height: $logo-height;
-    width: $logo-height;
-    max-width: $logo-height;
-    background-size: contain;
 }
 
 a.option-with-img {
     margin: 10px;
-    text-align: center;
+    text-align: left;
+    h4 {
+        width: $logo-height;
+        text-align:center;
+    }
+}
+
+/*
+    Communicator Header
+*/
+.communicator-header {
+    background-color: #000;
+    color: #fff;
+    height: $communicator-header-hight;
+    width: 100%;   
+    position:absolute;    
+
+    a.img-md {
+        margin: $logo-height/4;
+        min-width: $logo-height*1.2;
+
+        img {            
+            min-height: $logo-height;
+            min-width: $logo-height;
+        }
+    }
+
+    a.option-with-img {
+        h4 {
+            display: none;
+        }
+    }
 }
