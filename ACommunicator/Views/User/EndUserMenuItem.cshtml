@@ -1,13 +1,11 @@
 ﻿@using ACommunicator.Helpers.Google
 @model ACommunicator.Models.EndUserItemViewModel
-
+    
 @{
     var files = DriveHelper.GetFiles(Model.PicturePath.Trim()).ToList();
     var profilePicture = files.Count > 0 ? files.First().ThumbnailLink : "~/Content/imgs/default.png";
 }
 
 <a href="@Url.Action(Model.Action, Model.Controller, new {endUserId = Model.Id})" class="option-with-img img-md col-sm-2 col-xs-3">
-    <img src="@Url.Content(profilePicture)" class="img-circle img-responsive img-md" runat="server" alt="@Model.Username" />
-    <h4>@Model.Name</h4>
+    <img src="@Url.Content(profilePicture)" class="img-circle img-responsive img-md" runat="server" alt="@Model.Username"/>
 </a>
-

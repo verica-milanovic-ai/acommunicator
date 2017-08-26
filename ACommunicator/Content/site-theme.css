@@ -6,8 +6,9 @@ body {
   width: 100%; }
   body .container {
     width: 75%; }
+  body .body-content {
+    position: relative; }
   body .container.body-content {
-    position: relative;
     top: 100px; }
 
 /*
@@ -196,11 +197,27 @@ a.option-with-img {
   width: 100%;
   position: absolute; }
   .communicator-header a.img-md {
-    margin: 25px;
-    min-width: 120px; }
+    margin: 25px 0px;
+    min-width: 120px;
+    max-width: 130px; }
     .communicator-header a.img-md img {
       min-height: 100px;
       min-width: 100px; }
-  .communicator-header a.option-with-img h4 {
-    display: none; }
+
+/*
+    Communicator Body
+*/
+.communicator-body {
+  position: absolute;
+  top: 150px;
+  width: 100%;
+  padding: 0px 7%; }
+  .communicator-body a.img-md {
+    margin: 25px 0px;
+    min-width: 120px;
+    max-width: 130px; }
+    .communicator-body a.img-md img {
+      min-height: 100px;
+      min-width: 100px;
+      border: solid #b6daf2 1px; }
 

@@ -10,8 +10,11 @@ body {
         width: 75%;
     }
 
-    .container.body-content {
+    .body-content {
         position: relative;
+    }
+
+    .container.body-content {
         top: $logo-height;
     }
 }
@@ -25,6 +28,7 @@ body {
     background-color: $primary-color-lighter;
     border-color: $primary-color-lighter;
     margin-bottom: 0px;
+
     .title {
         color: $primary-color-darker;
         margin-right: 10px;
@@ -215,9 +219,10 @@ a.img-md {
 a.option-with-img {
     margin: 10px;
     text-align: left;
+
     h4 {
         width: $logo-height;
-        text-align:center;
+        text-align: center;
     }
 }
 
@@ -228,22 +233,40 @@ a.option-with-img {
     background-color: #000;
     color: #fff;
     height: $communicator-header-hight;
-    width: 100%;   
-    position:absolute;    
+    width: 100%;
+    position: absolute;
 
     a.img-md {
-        margin: $logo-height/4;
+        margin: $logo-height/4 0px;
         min-width: $logo-height*1.2;
+        max-width: $logo-height*1.3;
 
-        img {            
+        img {
             min-height: $logo-height;
             min-width: $logo-height;
         }
     }
+}
 
-    a.option-with-img {
-        h4 {
-            display: none;
+/*
+    Communicator Body
+*/
+.communicator-body {
+    position: absolute;
+    top: $communicator-header-hight;
+    width: 100%;
+    padding: 0px 7%;
+
+    a.img-md {
+        margin: $logo-height/4 0px;
+        min-width: $logo-height*1.2;
+        max-width: $logo-height*1.3;
+
+        img {
+            min-height: $logo-height;
+            min-width: $logo-height;
+            border: solid $primary-color-lighter 1px;
         }
     }
+
 }

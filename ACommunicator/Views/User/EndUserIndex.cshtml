@@ -5,22 +5,22 @@
     Layout = "~/Views/Shared/_CommunicatorLayout.cshtml";
 }
 
-    <div class="communicator-header">
-        @Html.Partial("EndUserItem", new EndUserItemViewModel
-        {
-            PicturePath = Model.EndUser.PicturePath,
-            Username = Model.EndUser.Username,
-            Name = "",
-            AUsers = Model.EndUser.AUsers,
-            Id = Model.EndUser.Id,
-            Options = Model.EndUser.Options,
-            Action = "EditEndUserProfile",
-            Controller = "User"
-        })
-
-        @* 
-            TODO: add options for user    
-        *@
-    </div>
-
-    @* TODO: add sub-options for selected option *@
+<div class="communicator-header">
+    @Html.Partial("EndUserMenuItem", new EndUserItemViewModel
+   {
+       PicturePath = Model.EndUser.PicturePath,
+       Username = Model.EndUser.Username,
+       Name = "",
+       AUsers = Model.EndUser.AUsers,
+       Id = Model.EndUser.Id,
+       Options = Model.EndUser.Options,
+       Action = "EditEndUserProfile",
+       Controller = "User"
+   })
+</div>
+<div class="communicator-body">
+    @foreach (var option in Model.EndUser.Options)
+    {
+        @Html.Partial("../Workflow/Option", new OptionItemViewModel(option, "Option", "Workflow"))
+    }
+</div>

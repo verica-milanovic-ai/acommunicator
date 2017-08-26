@@ -9,8 +9,9 @@
 
 namespace ACommunicator
 {
+    using System;
     using System.Collections.Generic;
-
+    
     public partial class Option
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,10 +21,11 @@ namespace ACommunicator
         }
     
         public int Id { get; set; }
-        public string Title { get; set; }
         public string Description { get; set; }
-        public string PicturePath { get; set; }
-        public string SoundPath { get; set; }
+        public string Name { get; set; }
+        public string ParentFolderID { get; set; }
+        public string FolderID { get; set; }
+        public int Level { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EndUser> EndUsers { get; set; }

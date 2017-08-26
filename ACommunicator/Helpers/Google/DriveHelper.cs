@@ -50,7 +50,7 @@ namespace ACommunicator.Helpers.Google
         /// <param name="search">Used to filter file list by file name containing string.
         /// If it's null, returns all files</param>
         /// <returns>File list</returns>
-        public static FileList GetFileList(int maxResults = 1000, string search = null)
+        public static FileList GetFileList(int maxResults = 1000, string search = null, string parentFolder = null)
         {
             var request = DriveService.Files.List();
             if (maxResults > 0)
@@ -58,24 +58,47 @@ namespace ACommunicator.Helpers.Google
                 request.MaxResults = maxResults;
             }
 
+            request.Spaces = "drive";
+
             if (!string.IsNullOrEmpty(search))
             {
-                request.Q = "name contains " + search;
+                request.Q = "title contains '" + search + "'";
             }
-
-            var files = request.Execute();
-            return files;
+            if (!string.IsNullOrEmpty(parentFolder))
+            {
+                if (string.IsNullOrEmpty(request.Q))
+                {
+                    request.Q = "'" + parentFolder + "' in parents";
+                }
+                else
+                {
+                    request.Q += " and '" + parentFolder + "' in parents";
+                }
+            }
+            try
+            {
+                var files = request.Execute();
+                return files;
+            }
+            catch (Exception e)
+            {
+                Log.Error(e);
+            }
+            return null;
         }
 
-        public static IEnumerable<File> GetFiles(string search = null)
-       {
+        public static IEnumerable<File> GetFiles(string search = null, string parentFolderId = null)
+        {
+            if (string.IsNullOrEmpty(parentFolderId))
+            {
+                parentFolderId = AppSettings.ACommunicatorPhotosDriveFolderId;
+            }
             var request = DriveService.Files.List();
-            request.Q = "'" + AppSettings.ACommunicatorPhotosDriveFolderId + "' in parents";
-            
-            
+            request.Q = "'" + parentFolderId + "' in parents";
+
             var files = request.Execute();
 
-            return !string.IsNullOrEmpty(search) ? files.Items.Where(x=>x.Title.Contains(search)) : files.Items.ToList();
+            return !string.IsNullOrEmpty(search) ? files.Items.Where(x => x.Title.Contains(search)) : files.Items.ToList();
         }
 
         /// <summary>

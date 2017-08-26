@@ -262,6 +262,7 @@
     <Compile Include="Models\EndUserItemViewModel.cs" />
     <Compile Include="Models\IndexViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\OptionItemViewModel.cs" />
     <Compile Include="Models\OptionViewModel.cs" />
     <Compile Include="Models\RegisterChildViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
@@ -306,8 +307,10 @@
     <Content Include="Views\User\EndUserIndex.cshtml" />
     <Content Include="Views\User\EditAUserProfile.cshtml" />
     <Content Include="Views\Workflow\Options.cshtml" />
-    <Content Include="Views\User\EndUserItem.cshtml" />
+    <Content Include="Views\User\EndUserMenuItem.cshtml" />
     <Content Include="Views\Shared\_CommunicatorLayout.cshtml" />
+    <Content Include="Views\Workflow\OptionMenuItem.cshtml" />
+    <Content Include="Views\User\EndUserItem.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
