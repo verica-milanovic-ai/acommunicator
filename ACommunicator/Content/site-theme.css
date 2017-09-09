@@ -5,7 +5,7 @@ body {
   color: #124364;
   width: 100%; }
   body .container {
-    width: 75%; }
+    width: 80%; }
   body .body-content {
     position: relative; }
   body .container.body-content {
@@ -213,7 +213,7 @@ a.option-with-img {
   width: 100%;
   padding: 0px 7%; }
   .communicator-body a.img-md {
-    margin: 25px 0px;
+    margin: 50px 0px;
     min-width: 120px;
     max-width: 130px; }
     .communicator-body a.img-md img {

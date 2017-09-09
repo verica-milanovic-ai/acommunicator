@@ -1,8 +1,6 @@
-﻿@model  List<ACommunicator.Models.OptionViewModel>
-<h2>Options</h2>
+﻿@model  List<ACommunicator.Models.OptionItemViewModel>
 
-@foreach (var option in @Model)
+@foreach (var option in Model)
 {
-    @Html.Partial("Option", option)
-    <br/>
+    @Html.Partial("../Workflow/Option", option)
 }

@@ -19,8 +19,5 @@
    })
 </div>
 <div class="communicator-body">
-    @foreach (var option in Model.EndUser.Options)
-    {
-        @Html.Partial("../Workflow/Option", new OptionItemViewModel(option, "Option", "Workflow"))
-    }
+   @Html.Partial("./../Workflow/Options", Model.Options)
 </div>

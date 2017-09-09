@@ -7,20 +7,23 @@
 }
 
 <div class="row">
-    @foreach (var child in Model.EndUserList)
+    @if (Model.EndUserList != null)
     {
-        var viewModel = new EndUserItemViewModel
+        foreach (var child in Model.EndUserList)
         {
-            PicturePath = child.PicturePath,
-            Username = child.Username,
-            Name = child.Name,
-            AUsers = child.AUsers,
-            Id = child.Id,
-            Options = child.Options,
-            Action = "EndUserIndex",
-            Controller = "User"
-        };
-        @Html.Partial("EndUserItem", viewModel)
+            var viewModel = new EndUserItemViewModel
+            {
+                PicturePath = child.PicturePath,
+                Username = child.Username,
+                Name = child.Name,
+                AUsers = child.AUsers,
+                Id = child.Id,
+                Options = child.Options,
+                Action = "EndUserIndex",
+                Controller = "User"
+            };
+            @Html.Partial("EndUserItem", viewModel)
+        }
     }
 </div>
 <script>

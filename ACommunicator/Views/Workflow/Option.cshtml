@@ -1,19 +1,6 @@
-﻿@using ACommunicator.Helpers
-@using ACommunicator.Helpers.Google
-@model ACommunicator.Models.OptionItemViewModel
-
-@{
-    var files = DriveHelper.GetFileList(0, Model.Title.Trim(), Model.PicturePath.Trim());
-    
-    var picture = files.Items.Count > 0 ? files.Items.First(x => x.MimeType == "image/jpeg").ThumbnailLink : "~/Content/imgs/default.png";
-}
+﻿@model ACommunicator.Models.OptionItemViewModel
 
 <a href="@Url.Action(Model.Action, Model.Controller , new {optionId = Model.Id})" class="option-with-img img-md col-sm-2 col-xs-3">
-    <img src="@Url.Content(picture)" class="img-responsive img-md" runat="server" alt="@Model.Title" />
-    <h4>@Model.Title</h4>
-</a>
-
-<a href="@Url.Action(Model.Action, Model.Controller , new {optionId = Model.Id})" class="option-with-img img-md col-sm-2 col-xs-3">
-    <img src="@Url.Content(picture)" class="img-responsive img-md" runat="server" alt="@Model.Title" />
-    <h4>@Model.Title</h4>
+    <img src="@Url.Content(Model.Image)" class="img-responsive img-md" runat="server" alt="@Model.Name" />
+    <h4>@Model.Name</h4>
 </a>

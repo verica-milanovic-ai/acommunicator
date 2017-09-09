@@ -1,9 +1,9 @@
 ﻿namespace ACommunicator.Models
 {
-    public class OptionViewModel
+    public class OptionViewModel : Option
     {
-        public string ImageUrl { get; set; }
-        public string OptionId { get; set; }
-        public string Text { get; set; }
+        public string Image { get; set; }
+
+        public string Sound { get; set; }
     }
 }

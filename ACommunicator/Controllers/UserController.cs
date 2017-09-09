@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ACommunicator.Helpers;
@@ -252,10 +253,22 @@ namespace ACommunicator.Controllers
             {
                 return RedirectToAction("NotFound", "Error");
             }
+            
+            var endUserIdInt = 0;
+            int.TryParse(endUserId, out endUserIdInt);
 
-            // TODO: fetch starting point options to display
+            var optionList = OptionHelper.GetOptinonListForEndUser(endUserIdInt);
 
-            return View(new EndUserIndexViewModel { EndUser = UserHelper.GetEndUserById(int.Parse(endUserId)) });
+            var optionItemViewModelList = optionList.Select(OptionHelper.GetOption)
+                                            .Select(optionMediaModel =>
+                                                new OptionItemViewModel(optionMediaModel, "SelectOption", "Workflow"))
+                                            .ToList();
+
+            return View(new EndUserIndexViewModel
+            {
+                EndUser = UserHelper.GetEndUserById(int.Parse(endUserId)),
+                Options = optionItemViewModelList
+            });
         }
 
         public ActionResult Logout()

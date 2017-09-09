@@ -1,6 +1,6 @@
 ﻿namespace ACommunicator.Models
 {
-    public class OptionItemViewModel : Option
+    public class OptionItemViewModel : OptionMediaModel
     {
         public string Action { get; set; }
         public string Controller { get; set; }
@@ -12,15 +12,18 @@
         /// <param name="action">Controller Action name that needs to be called
         ///  when user clicks on this option</param>
         /// <param name="controller">Controller name (without Controller suffix)</param>
-        public OptionItemViewModel(Option option, string action, string controller)
+        public OptionItemViewModel(OptionMediaModel option, string action, string controller) : base(option)
         {
-            Id = option.Id;
-            Title = option.Title;
-            Description = option.Description;
-            PicturePath = option.PicturePath;
-            SoundPath = option.SoundPath;
+            Image = option.Image;
+            Sound = option.Sound;
             Action = action;
             Controller = controller;
+        }
+
+        public OptionItemViewModel(OptionMediaModel option) : base(option)
+        {
+            Image = option.Image;
+            Sound = option.Sound;
         }
     }
 }

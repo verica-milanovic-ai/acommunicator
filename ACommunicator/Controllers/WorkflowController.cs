@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
-using ACommunicator.Helpers.Google;
+using ACommunicator.Helpers;
 using ACommunicator.Models;
 
 namespace ACommunicator.Controllers
@@ -9,14 +8,38 @@ namespace ACommunicator.Controllers
     public class WorkflowController : Controller
     {
         [HttpGet]
-        public ActionResult Options(string optionId)
+        public ActionResult Options(int optionId)
         {
-            var file = DriveHelper.GetFiles("default").First();
+            var optionList = OptionHelper.GetChildOptionList(optionId);
+            var optionItemViewModelList = optionList.Select(OptionHelper.GetOption)
+                                            .Select(optionMediaModel =>
+                                                new OptionItemViewModel(optionMediaModel, "SelectOption", "Workflow"))
+                                            .ToList();
 
-            var fileEmbedLink = file.ThumbnailLink;
+            return PartialView("Options", optionItemViewModelList);
+        }
 
+        [HttpGet]
+        public ActionResult SelectOption(int optionId)
+        {
+            var option = OptionHelper.GetOption(optionId);
 
-            return View("Options", new List<OptionViewModel> { new OptionViewModel { ImageUrl = fileEmbedLink, Text = "default option", OptionId = "1" } });
+            if (option == null) return RedirectToAction("SomethingWentWrong", "Error");
+            switch (option.Level)
+            {
+                case 1:
+                case 2:
+                    {
+                        return RedirectToAction("Options", new { optionId = option.Id });
+                    }
+                case 3:
+                    {
+                        var optionMediaModel = OptionHelper.GetOption(option);
+                        return PartialView("FinalOption", optionMediaModel);
+                    }
+                default:
+                    return RedirectToAction("SomethingWentWrong", "Error");
+            }
         }
     }
 }

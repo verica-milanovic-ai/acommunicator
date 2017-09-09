@@ -50,11 +50,12 @@ GO
 CREATE TABLE [dbo].[Options]
 (   
  [Id] int NOT NULL PRIMARY KEY IDENTITY(1,1),
- [Name] [nvarchar](20) NOT NULL,
+ [Name] [nvarchar](255) NOT NULL,
  [Description] [nvarchar](255) NULL,
  [ParentFolderID] [nvarchar](255) NOT NULL,
  [FolderID] [nvarchar](255) NULL,
- [Level] int NOT NULL
+ [Level] int NOT NULL,
+ [IsDefault] bit NOT NULL DEFAULT 0
 ) ON [PRIMARY]
 GO
 

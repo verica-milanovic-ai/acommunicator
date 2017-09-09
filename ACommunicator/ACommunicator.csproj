@@ -254,6 +254,8 @@
     <Compile Include="Helpers\CookieHelper.cs" />
     <Compile Include="Helpers\EmailHelper.cs" />
     <Compile Include="Helpers\Google\DriveHelper.cs" />
+    <Compile Include="Helpers\Google\OptionDriveHelper.cs" />
+    <Compile Include="Helpers\OptionHelper.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Helpers\UserHelper.cs" />
     <Compile Include="Models\EditAUserProfileViewModel.cs" />
@@ -263,6 +265,7 @@
     <Compile Include="Models\IndexViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\OptionItemViewModel.cs" />
+    <Compile Include="Models\OptionMediaModel.cs" />
     <Compile Include="Models\OptionViewModel.cs" />
     <Compile Include="Models\RegisterChildViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
@@ -311,6 +314,7 @@
     <Content Include="Views\Shared\_CommunicatorLayout.cshtml" />
     <Content Include="Views\Workflow\OptionMenuItem.cshtml" />
     <Content Include="Views\User\EndUserItem.cshtml" />
+    <Content Include="Views\Workflow\FinalOption.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
