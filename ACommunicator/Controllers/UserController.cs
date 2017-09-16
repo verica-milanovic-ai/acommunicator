@@ -239,6 +239,8 @@ namespace ACommunicator.Controllers
         [HttpGet]
         public ActionResult EndUserIndex(string endUserId)
         {
+            CookieHelper.RemoveCookie(CookieHelper.SelectedOptionsCookie, Response);
+
             if (!string.IsNullOrEmpty(endUserId))
             {
                 CookieHelper.AddCookie(CookieHelper.EndUserCookie, endUserId, Response);
@@ -275,12 +277,14 @@ namespace ACommunicator.Controllers
         {
             CookieHelper.RemoveCookie(CookieHelper.EndUserCookie, Response);
             CookieHelper.RemoveCookie(CookieHelper.AUserCookie, Response);
+            CookieHelper.RemoveCookie(CookieHelper.SelectedOptionsCookie, Response);
             return RedirectToAction("Index", "Home");
         }
 
         public ActionResult LogoutChild()
         {
             CookieHelper.RemoveCookie(CookieHelper.EndUserCookie, Response);
+            CookieHelper.RemoveCookie(CookieHelper.SelectedOptionsCookie, Response);
             return RedirectToAction("Index");
         }
 

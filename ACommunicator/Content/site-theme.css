@@ -197,12 +197,23 @@ a.option-with-img {
   width: 100%;
   position: absolute; }
   .communicator-header a.img-md {
-    margin: 25px 0px;
-    min-width: 120px;
-    max-width: 130px; }
+    margin: 10px 0px;
+    min-width: 175px;
+    max-width: 175px; }
     .communicator-header a.img-md img {
-      min-height: 100px;
-      min-width: 100px; }
+      min-height: 125px;
+      min-width: 125px; }
+  .communicator-header a.img-sm {
+    margin: 10px 0px;
+    min-width: 120px;
+    max-width: 120px; }
+    .communicator-header a.img-sm img {
+      max-height: 80px;
+      max-width: 80px;
+      min-height: 80px;
+      min-width: 80px; }
+    .communicator-header a.img-sm h4 {
+      width: 80px; }
 
 /*
     Communicator Body
@@ -220,4 +231,7 @@ a.option-with-img {
       min-height: 100px;
       min-width: 100px;
       border: solid #b6daf2 1px; }
+  .communicator-body h2 {
+    text-align: center;
+    padding-top: 100px; }
 

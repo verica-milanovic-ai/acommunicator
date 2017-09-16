@@ -237,13 +237,30 @@ a.option-with-img {
     position: absolute;
 
     a.img-md {
-        margin: $logo-height/4 0px;
-        min-width: $logo-height*1.2;
-        max-width: $logo-height*1.3;
+        margin: $logo-height/10 0px;
+        min-width: $logo-height*1.75;
+        max-width: $logo-height*1.75;
 
         img {
-            min-height: $logo-height;
-            min-width: $logo-height;
+            min-height: $logo-height * 1.25;
+            min-width: $logo-height * 1.25;
+        }
+    }
+
+    a.img-sm {
+        margin: $logo-height/10 0px;
+        min-width: $logo-height * 1.2;
+        max-width: $logo-height * 1.2;
+
+        img {
+            max-height: $logo-height * 0.8;
+            max-width: $logo-height * 0.8;
+            min-height: $logo-height * 0.8;
+            min-width: $logo-height * 0.8;
+        }
+
+        h4 {
+            width: 80px;
         }
     }
 }
@@ -269,4 +286,8 @@ a.option-with-img {
         }
     }
 
+    h2 {
+        text-align: center;
+        padding-top: $logo-height;
+    }
 }

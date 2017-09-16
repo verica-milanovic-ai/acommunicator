@@ -1,12 +1,16 @@
-﻿@using ACommunicator.Models
+﻿@using ACommunicator.Helpers
+@using ACommunicator.Models
 @model EndUserIndexViewModel
 
 @{
     Layout = "~/Views/Shared/_CommunicatorLayout.cshtml";
+
+    var isMetaCommunicatorMode = Request.Cookies.Get(CookieHelper.EndUserCookie) == null 
+                                    || string.IsNullOrEmpty(Request.Cookies.Get(CookieHelper.EndUserCookie)?.Value);
 }
 
 <div class="communicator-header">
-    @Html.Partial("EndUserMenuItem", new EndUserItemViewModel
+    @Html.Partial("../User/EndUserMenuItem", new EndUserItemViewModel
    {
        PicturePath = Model.EndUser.PicturePath,
        Username = Model.EndUser.Username,
@@ -14,10 +18,25 @@
        AUsers = Model.EndUser.AUsers,
        Id = Model.EndUser.Id,
        Options = Model.EndUser.Options,
-       Action = "EditEndUserProfile",
-       Controller = "User"
+       Action = isMetaCommunicatorMode ? "EditEndUserProfile" : "EndUserIndex",
+       Controller = "User",
+       SelectedOptions = Model.SelectedOptions
    })
 </div>
 <div class="communicator-body">
-   @Html.Partial("./../Workflow/Options", Model.Options)
+    @if (Model.Options?.Count > 1)
+    {
+        @Html.Partial("./../Workflow/Options", Model.Options)
+    }
+    else
+    {
+        if (Model.Options?.Count == 1 && Model.Options.First().Level == 4)
+        {
+            @Html.Partial("./../Workflow/FinalOption", Model.Options.First())
+        }
+        else
+        {
+            @Html.Partial("./../Workflow/Options", Model.Options)
+        }
+    }
 </div>

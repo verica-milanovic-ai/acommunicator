@@ -6,5 +6,6 @@ namespace ACommunicator.Models
     {
         public EndUser EndUser { get; set; }
         public List<OptionItemViewModel> Options { get; set; }
+        public List<OptionItemViewModel> SelectedOptions { get; set; }
     }
 }

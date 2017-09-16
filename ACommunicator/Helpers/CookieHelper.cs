@@ -7,10 +7,11 @@ namespace ACommunicator.Helpers
     {
         public const string AUserCookie = "A-User";
         public const string EndUserCookie = "End-User";
+        public const string SelectedOptionsCookie = "Selected-Options";
 
         public static void RemoveCookie(string cookieName, HttpResponseBase response)
         {
-            var aCookie = new HttpCookie(cookieName) {Expires = DateTime.Now.AddDays(-1)};
+            var aCookie = new HttpCookie(cookieName) { Expires = DateTime.Now.AddDays(-1) };
             response.Cookies.Add(aCookie);
         }
 
