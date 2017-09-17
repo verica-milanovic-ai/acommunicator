@@ -11,7 +11,7 @@
             Name = option.Name;
             Description = option.Description;
             FolderID = option.FolderID;
-            ParentFolderID = option.ParentFolderID;
+            ParentOptionId = option.ParentOptionId;
             Level = option.Level;
             Id = option.Id;
         }

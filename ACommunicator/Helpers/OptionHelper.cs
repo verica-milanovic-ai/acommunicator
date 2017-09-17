@@ -49,22 +49,14 @@ namespace ACommunicator.Helpers
 
             // TODO: check if it is possible to have NullPointerException for x.ParentFolderID.Equals method call
             var returnValue = new List<Option>();
-            
+
             switch (option?.Level)
             {
                 case 1:
-                    {
-                        returnValue = DbContext.Options.Where(x => x.ParentFolderID.Equals(option.FolderID)).ToList();
-                        break;
-                    }
                 case 2:
                 case 3:
                     {
-                        returnValue =
-                            DbContext.Options.Where(
-                                x =>
-                                    x.ParentFolderID.Equals(option.FolderID) &&
-                                    (x.Level == option.Level || x.Level == option.Level + 1)).ToList();
+                        returnValue = DbContext.Options.Where(x => x.ParentOptionId == optionId).ToList();
                         break;
                     }
                 case 4:
@@ -73,12 +65,111 @@ namespace ACommunicator.Helpers
                         break;
                     }
                 default:
-                {
-                    break;
-                }
+                    {
+                        break;
+                    }
             }
 
             return returnValue;
+        }
+
+        /// <summary>
+        /// Needs to be called from AddOption method 
+        /// with input param type of OptionMediaModel
+        /// </summary>
+        /// <param name="option"></param>
+        /// <param name="endUserId"></param>
+        /// <returns></returns>
+        private static Option AddOption(Option option, string endUserId)
+        {
+            if (string.IsNullOrEmpty(option?.Name)
+                ||
+                (option?.Level < 1 || option?.Level > 4))
+            {
+                return null;
+            }
+
+            var endUser = DbContext.EndUsers.Find(endUserId);
+            option.IsDefault = false;
+            option.EndUsers = new List<EndUser> { endUser };
+
+            option = DbContext.Options.Add(option);
+
+            DbContext.SaveChanges();
+
+            return option;
+        }
+
+        private static bool UpdateOption(Option option, string endUserId)
+        {
+            if (string.IsNullOrEmpty(option?.Name)
+                ||
+                (option?.Level < 1 || option?.Level > 4))
+            {
+                return false;
+            }
+            var original = DbContext.Options.Find(option.Id);
+            if (original == null) return false;
+
+            if (original.IsDefault)
+            {
+                DbContext.Options.Add(option);
+
+                var endUserOriginal = DbContext.EndUsers.Find(endUserId);
+                var endUser = new EndUser(endUserOriginal);
+                endUser.Options.Remove(original);
+
+                DbContext.Entry(endUserOriginal).CurrentValues.SetValues(endUser);
+            }
+            else
+            {
+                DbContext.Entry(original).CurrentValues.SetValues(option);
+            }
+
+            DbContext.SaveChanges();
+            return true;
+        }
+
+        private static bool RemoveOption(Option option, string endUserId)
+        {
+            var endUserOriginal = DbContext.EndUsers.Find(endUserId);
+
+            if (option == null) return false;
+
+
+            var endUser = new EndUser(endUserOriginal);
+            
+            // recursion here!
+            RemoveAllChildOptions(option, endUser);
+
+            DbContext.Entry(endUserOriginal).CurrentValues.SetValues(endUser);
+            DbContext.SaveChanges();
+
+            return true;
+        }
+
+        /// <summary>
+        /// Be aware that recoursion is used in this method.
+        /// </summary>
+        /// <param name="option">Option to be removed as well as its childOptions</param>
+        /// <param name="endUser">From whom to remove Option - must be a copy of original endUser object!</param>
+        private static void RemoveAllChildOptions(Option option, EndUser endUser)
+        {
+            var childOptionList = option.Options1;
+
+            if (childOptionList != null && childOptionList.Count > 0)
+            {
+                foreach (var childOption in childOptionList)
+                {
+                    RemoveAllChildOptions(childOption, endUser);
+                }
+            }
+
+            endUser.Options.Remove(option);
+            if (!option.IsDefault)
+            {
+                DbContext.Options.Remove(option);
+            }
         }
     }
 }

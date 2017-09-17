@@ -9,8 +9,9 @@
 
 namespace ACommunicator
 {
+    using System;
     using System.Collections.Generic;
-
+    
     public partial class EndUser
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -18,6 +19,20 @@ namespace ACommunicator
         {
             this.AUsers = new HashSet<AUser>();
             this.Options = new HashSet<Option>();
+        }
+
+        /// <summary>
+        /// Copy constructor => creates copy of object of type EndUser
+        /// </summary>
+        /// <param name="endUser">object to copy</param>
+        public EndUser(EndUser endUser)
+        {
+            this.PicturePath = endUser.PicturePath;
+            this.Options = endUser.Options;
+            this.AUsers = endUser.AUsers;
+            this.Id = endUser.Id;
+            this.Name = endUser.Name;
+            this.Username = endUser.Username;
         }
     
         public int Id { get; set; }

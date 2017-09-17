@@ -18,6 +18,28 @@ namespace ACommunicator.Helpers
             return returnValue;
         }
 
+        public static OptionMediaModel AddOption(OptionMediaModel optionMediaModel, string endUserId)
+        {
+            //TODO: save media on drive
+
+            AddOption(new Option(optionMediaModel), endUserId);
+            return optionMediaModel;
+        }
+
+        public static bool UpdateOption(OptionMediaModel optionMediaModel, string endUserId)
+        {
+            // TODO: edit media on drive
+
+            return UpdateOption(new Option(optionMediaModel), endUserId);
+        }
+
+        public static bool RemoveOption(OptionMediaModel optionMediaModel, string endUserId)
+        {
+            // TODO: remove media from drive if option is not default one
+
+            return RemoveOption(new Option(optionMediaModel), endUserId);
+        }
+
 
     }
 }

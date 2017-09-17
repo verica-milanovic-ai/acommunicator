@@ -10,6 +10,7 @@
         <EntityTypeShape EntityType="ACommunicatorModel.Option" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
         <AssociationConnector Association="ACommunicatorModel.AUserEndUser" ManuallyRouted="false" />
         <AssociationConnector Association="ACommunicatorModel.EndUserOption" ManuallyRouted="false" />
+        <AssociationConnector Association="ACommunicatorModel.FK__Options__ParentO__07C12930" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

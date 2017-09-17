@@ -47,13 +47,14 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="255" />
-          <Property Name="ParentFolderID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ParentOptionId" Type="int" />
           <Property Name="FolderID" Type="nvarchar" MaxLength="255" />
           <Property Name="Level" Type="int" Nullable="false" />
+          <Property Name="IsDefault" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK__AUserEndU__AUser__48CFD27E">
+        <Association Name="FK__AUserEndU__AUser__0A9D95DB">
           <End Role="AUsers" Type="Self.AUsers" Multiplicity="1" />
           <End Role="AUserEndUser" Type="Self.AUserEndUser" Multiplicity="*" />
           <ReferentialConstraint>
@@ -65,7 +66,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__AUserEndU__EndUs__49C3F6B7">
+        <Association Name="FK__AUserEndU__EndUs__0B91BA14">
           <End Role="EndUsers" Type="Self.EndUsers" Multiplicity="1" />
           <End Role="AUserEndUser" Type="Self.AUserEndUser" Multiplicity="*" />
           <ReferentialConstraint>
@@ -77,7 +78,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EndUserOp__EndUs__4CA06362">
+        <Association Name="FK__EndUserOp__EndUs__0E6E26BF">
           <End Role="EndUsers" Type="Self.EndUsers" Multiplicity="1" />
           <End Role="EndUserOption" Type="Self.EndUserOption" Multiplicity="*" />
           <ReferentialConstraint>
@@ -89,7 +90,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EndUserOp__Optio__4D94879B">
+        <Association Name="FK__EndUserOp__Optio__0F624AF8">
           <End Role="Options" Type="Self.Options" Multiplicity="1" />
           <End Role="EndUserOption" Type="Self.EndUserOption" Multiplicity="*" />
           <ReferentialConstraint>
@@ -101,27 +102,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Options__ParentO__07C12930">
+          <End Role="Options" Type="Self.Options" Multiplicity="0..1" />
+          <End Role="Options1" Type="Self.Options" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Options">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Options1">
+              <PropertyRef Name="ParentOptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ACommunicatorModelStoreContainer">
           <EntitySet Name="AUserEndUser" EntityType="Self.AUserEndUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AUsers" EntityType="Self.AUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EndUserOption" EntityType="Self.EndUserOption" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EndUsers" EntityType="Self.EndUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Options" EntityType="Self.Options" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__AUserEndU__AUser__48CFD27E" Association="Self.FK__AUserEndU__AUser__48CFD27E">
+          <AssociationSet Name="FK__AUserEndU__AUser__0A9D95DB" Association="Self.FK__AUserEndU__AUser__0A9D95DB">
             <End Role="AUsers" EntitySet="AUsers" />
             <End Role="AUserEndUser" EntitySet="AUserEndUser" />
           </AssociationSet>
-          <AssociationSet Name="FK__AUserEndU__EndUs__49C3F6B7" Association="Self.FK__AUserEndU__EndUs__49C3F6B7">
+          <AssociationSet Name="FK__AUserEndU__EndUs__0B91BA14" Association="Self.FK__AUserEndU__EndUs__0B91BA14">
             <End Role="EndUsers" EntitySet="EndUsers" />
             <End Role="AUserEndUser" EntitySet="AUserEndUser" />
           </AssociationSet>
-          <AssociationSet Name="FK__EndUserOp__EndUs__4CA06362" Association="Self.FK__EndUserOp__EndUs__4CA06362">
+          <AssociationSet Name="FK__EndUserOp__EndUs__0E6E26BF" Association="Self.FK__EndUserOp__EndUs__0E6E26BF">
             <End Role="EndUsers" EntitySet="EndUsers" />
             <End Role="EndUserOption" EntitySet="EndUserOption" />
           </AssociationSet>
-          <AssociationSet Name="FK__EndUserOp__Optio__4D94879B" Association="Self.FK__EndUserOp__Optio__4D94879B">
+          <AssociationSet Name="FK__EndUserOp__Optio__0F624AF8" Association="Self.FK__EndUserOp__Optio__0F624AF8">
             <End Role="Options" EntitySet="Options" />
             <End Role="EndUserOption" EntitySet="EndUserOption" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Options__ParentO__07C12930" Association="Self.FK__Options__ParentO__07C12930">
+            <End Role="Options" EntitySet="Options" />
+            <End Role="Options1" EntitySet="Options" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -159,10 +176,13 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="EndUsers" Relationship="Self.EndUserOption" FromRole="Options" ToRole="EndUsers" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="ParentFolderID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="FolderID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Level" Type="Int32" Nullable="false" />
+          <Property Name="ParentOptionId" Type="Int32" />
+          <Property Name="IsDefault" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Options1" Relationship="ACommunicatorModel.FK__Options__ParentO__07C12930" FromRole="Option" ToRole="Option1" />
+          <NavigationProperty Name="Option1" Relationship="ACommunicatorModel.FK__Options__ParentO__07C12930" FromRole="Option1" ToRole="Option" />
         </EntityType>
         <Association Name="AUserEndUser">
           <End Role="AUsers" Type="Self.AUser" Multiplicity="*" />
@@ -184,7 +204,23 @@
             <End Role="EndUsers" EntitySet="EndUsers" />
             <End Role="Options" EntitySet="Options" />
           </AssociationSet>
+          <AssociationSet Name="FK__Options__ParentO__07C12930" Association="ACommunicatorModel.FK__Options__ParentO__07C12930">
+            <End Role="Option" EntitySet="Options" />
+            <End Role="Option1" EntitySet="Options" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK__Options__ParentO__07C12930">
+          <End Type="ACommunicatorModel.Option" Role="Option" Multiplicity="0..1" />
+          <End Type="ACommunicatorModel.Option" Role="Option1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Option">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Option1">
+              <PropertyRef Name="ParentOptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -217,9 +253,10 @@
           <EntitySetMapping Name="Options">
             <EntityTypeMapping TypeName="ACommunicatorModel.Option">
               <MappingFragment StoreEntitySet="Options">
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+                <ScalarProperty Name="ParentOptionId" ColumnName="ParentOptionId" />
                 <ScalarProperty Name="Level" ColumnName="Level" />
                 <ScalarProperty Name="FolderID" ColumnName="FolderID" />
-                <ScalarProperty Name="ParentFolderID" ColumnName="ParentFolderID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
